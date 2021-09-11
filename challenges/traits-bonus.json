@@ -1,0 +1,17 @@
+{
+    "name": "Traits - Bonus Wheel",
+    "code": "traits-bonus",
+    "hasWheel": true,
+    "hasDuplicates": true,
+    "wheel":{
+        "Add Another Trait": {"n":1, "desc": "Another trait must be added to one person. Spin the Trait Wheel first and then decide who shall be the unlucky one to get another trait stacked."},
+        "Add Two Traits": {"n": 1, "desc": "Two traits must be added. You can either choose to stack both of them on one person or split them between two people. Either way, someone's getting another trait (or two) stacked on them."},
+        "Another Trait For All": { "n": 2, "desc": "YOU GET A TRAIT! YOU GET A TRAIT! EVERYONE GETS A NEW TRAIT! All players have to add another trait on top of their existing trait."},
+        "Ban Items": {"n":1, "desc": "Would you look at that! Two items are being banned on the next mission! Spin the Banned Items wheel to see which items your group can't use since they're BANNED!"},
+        "Everyone Reroll": {"n": 1, "desc": "Just when you think you were about to become comfortable with your new trait, TOO LATE! Spin again! You get a new trait! :D"},
+        "Nothing": {"n":2, "desc": "Did you risk your life to get all the optional objectives done? Welp, I'm sorry to say that literally nothing happens Keep your new traits and go on to the next mission!"},
+        "One At A Time": {"n":1, "desc": "On your next mission, only one person can be in the building at a time. If a player in your group has the Scaredy Cat or Deaf Trait, spin the bonus wheel again."}, 
+        "One Person Rerolls": {"n": 1, "desc": "Choose only one person in your group to reroll their new trait."},
+        "Spin Again": {"n": 1, "desc": "You heard the boss! SPIN THAT (Bonus) WHEEL AGAIN!"}
+    }
+}
