@@ -5,7 +5,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 import random
 
-load_dotenv()
+load_dotenv('---.env')
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='!')
 
