@@ -7,7 +7,7 @@ import random
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!phas')
 
 items=["Spirit box", "Book", "Photo Camera", "EMF", "Video Camera", "UV Flashlight", "D.O.T.S.", "Candle", "Crucifix", "Glow Stick", "Head Mounted Camera", "Motion Sensor", "Lighter", "Parabolic Mic", "Salt", "Pills", "Smudge Stick", "Sound Sensor", "Strong Flashlight", "Thermometer", "Tripod"]
 
