@@ -1,0 +1,20 @@
+{
+    "help":{
+        "brief":"this message"
+    },
+    "item":{
+        "brief":"choose a random item"
+    },
+    "map":{
+        "long":"`maps...` is a sequence of zero or more letters separated by spaces:\n    - t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highscool\n    - p: Prison\n    - a: Asylum",
+        "brief":"choose a random map between all of them, or only those indicated in `maps...`"
+    },
+    "challenge":{
+        "long":"If you don't specify CHALLENGE_NAME, the command will give you the name of a random challenge. Possible challenges:\n    - photo: Photo challenge (no wheel to spin)\n    - traits: Trait challenge (From https://www.dposofficial.com/phasmophobiatraitschallenge.html)\n    - traits-bonus: Bonus wheel of the trait challenge",
+        "brief":"pick a random challenge or turn the wheel of a specific challenge"
+    },
+    "clues":{
+        "long":"Valid clues:\n    - emf or emf5\n    - book or writing or ghostwriting\n    - fingerprints or fingers\n    - spirit or spiritbox\n    - orbs or ghostorbs\n    - freezing or temps\n    - dots",
+        "brief":"Show which ghosts are possible with those clues and which evidence is lacking"
+    }
+}

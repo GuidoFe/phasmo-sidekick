@@ -1,5 +1,7 @@
 ❓ `help`: this message
+
 🔦 `item`: pick a random item
+
 🗺️ `map LIST`: choose a random map between those indicated.If List is empty, it will consider every map. List is a sequence of these letters separated by spaces:
    - t: Tanglewood
    - e: Edgefield
@@ -10,10 +12,12 @@
    - h: Brownstone Highscool
    - p: Prison
    - a: Asylum
+
 ⚔️ `challenge CHALLENGE_NAME`: pick a random element from the challenge CHALLENGE_NAME, if possible. If you don't specify CHALLENGE_NAME, the command will give you the name of a random challenge. Possible challenges:
    - `photo`: Photo challenge (no wheel to spin)
    - `traits`: Trait challenge (From https://www.dposofficial.com/phasmophobiatraitschallenge.html)
    - `traits-bonus`: Bonus wheel of the trait challenge
+
 🔎`clues CLUES`: Show which ghosts are possible with those clues and which evidence is lacking. Clues:
    - `emf` or `emf5`
    - `book` or `writing` or `ghostwriting`
