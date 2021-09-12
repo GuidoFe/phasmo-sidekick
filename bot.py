@@ -1,10 +1,12 @@
 #!/bin/python3
 import os
 import json
+import sys
 from discord.ext import commands
 from dotenv import load_dotenv
 import random
 
+os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='!phas ')
