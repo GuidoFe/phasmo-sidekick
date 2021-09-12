@@ -29,7 +29,7 @@ maps={
     "a": "Asylum"
 }
 
-clue_n={"emf": 0, "emfs": 0, "book":1, "writing":1, "ghostwriting":1, "fingerprints":2, "fingers":2, "spirit":3, "spiritbox":3, "orbs":4, "ghostorbs":4, "freezing":5, "temps":5, "dots":6}
+clue_n={"emf": 0, "emf5": 0, "book":1, "writing":1, "ghostwriting":1, "fingerprints":2, "fingers":2, "spirit":3, "spiritbox":3, "orbs":4, "ghostorbs":4, "freezing":5, "temps":5, "dots":6}
 
 n_clue=["EMF 5", "Ghost writing", "Fingerprints", "Spiritbox", "Ghost orbs", "Freezing", "D.O.T.S."]
 
