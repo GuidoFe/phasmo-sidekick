@@ -77,7 +77,7 @@ module.exports = Object.freeze({
     challenges: challengeList,
     help: {
         'item': '🔦 `/item`: pick a random item',
-        'map': '🗺️ `/map LIST`: choose a random map between those indicated.If List is empty, it will consider every map. List is a sequence of these letters separated by spaces\n    :- t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highscool\n    - p: Prison\n    - a: Asylum',
+        'map': '🗺️ `/map LIST`: choose a random map between those indicated. If List is empty, it will consider every map. List is a sequence of these letters separated by spaces:\n    - t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highscool\n    - p: Prison\n    - a: Asylum',
         'spin': '🌀`\spin CHALLENGE_NAME`: spin the wheel of the challenge CHALLENGE_NAME, if it has one.',
         'challenge': '⚔️ `\challenge`: pick a random challenge.',
         'clues': '🔎`clues CLUES`: Show which ghosts are possible with those clues and which evidence is lacking. Clues:\n    - `emf` or `emf5`\n    - `book` or `writing` or `ghostwriting`\n    - `fingerprints` or `fingers`\n    - `spirit` or `spiritbox`\n    - `orbs` or `ghostorbs`\n    - `freezing` or `temps`\n    - `dots`',
