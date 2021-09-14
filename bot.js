@@ -1,4 +1,4 @@
-const {Client, Intents} = require('discord.js');
+const {Client, Intents, MessageEmbed} = require('discord.js');
 require('dotenv').config();
 const constants = require('./constants');
 const commands = require('./commands');
@@ -76,6 +76,15 @@ client.on('interactionCreate', async (interaction) => {
             })));
         }
 
+        break;
+    case 'help':
+        const embed = new MessageEmbed().setDescription(commands.help(interaction.options.getString('command')));
+        if (interaction.options.getString('command')) {
+            embed.setTitle(`Help for ${interaction.options.getString('command')}`);
+        } else {
+            embed.setTitle('Commands');
+        }
+        await interaction.reply({embeds: [embed]});
         break;
     default:
         await interaction.reply({content: 'Error: command not valid', ephemeral: true});

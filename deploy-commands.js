@@ -38,7 +38,21 @@ const commands = [
         .addStringOption((option) =>
             option
                 .setName('clues')
+                .setRequired(false)
                 .setDescription('List of possible clues separated by spaces, eg. orbs spirit')),
+    new SlashCommandBuilder()
+        .setName('help')
+        .setDescription('Need some help?')
+        .addStringOption((option) =>
+            option
+                .setName('command')
+                .setDescription('Command you are unfamiliar with')
+                .setRequired(false)
+                .addChoice('item', 'item')
+                .addChoice('map', 'map')
+                .addChoice('spin', 'spin')
+                .addChoice('challenge', 'challenge')
+                .addChoice('clues', 'clues')),
 ]
     .map((command) => command.toJSON());
 const rest = new REST({version: '9'}).setToken(token);

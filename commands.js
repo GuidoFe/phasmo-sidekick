@@ -92,4 +92,15 @@ module.exports = {
             return msg.slice(0, -1);
         }
     },
+    help: function(command) {
+        if (command) {
+            return constants.help[command];
+        } else {
+            let msg = '';
+            for (c of Object.keys(constants.help)) {
+                msg += constants.help[c] + '\n\n';
+            }
+            return msg;
+        }
+    },
 };
