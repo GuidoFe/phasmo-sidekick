@@ -11,6 +11,17 @@ client.once('ready', () => {
 });
 client.login(process.env.TOKEN);
 
+let challengeList = function(list) {
+    let msg = 'Possible challenges:\n';
+    chList = [];
+    for (name of list) {
+        ch = constants.challenges[name];
+        chList.push(`**${ch.name}** (code \`${ch.code}\`)`);
+    }
+    msg += utils.formatArrayAsList(chList);
+    return msg;
+}
+
 client.on('messageCreate', (message) => {
     // Stop if message is received in DMs
     if (!message.guild) return;
@@ -27,20 +38,14 @@ client.on('messageCreate', (message) => {
     case 'challenge':
         if (args.length > 2) {
             if (args[2] == 'list') {
-                let msg = 'Possible challenges:\n';
-                chList = [];
-                for (ch of Object.values(constants.challenges)) {
-                    chList.push(`**${ch.name}** (code \`${ch.code}\`)`);
-                }
-                msg += utils.formatArrayAsList(chList);
-                message.reply(msg);
+                message.reply(challengeList(Object.keys(constants.challenges)));
             } else {
                 const challenge = constants.challenges[args[2]];
                 if (challenge) {
                     message.reply(`**${challenge['name']}**: ${challenge['desc']}`);
                 } else {
                     let msg = `${args[2]} is not a valid challenge.\nPossible challenges:\n`;
-                    msg += utils.formatObjectAsList(constants.challenges);
+                    msg += challengeList(Object.keys(constants.challenges));
                     message.reply(utils.errorMessageBuilder(msg));
                 }
             }
@@ -60,12 +65,12 @@ client.on('messageCreate', (message) => {
                     .setDescription(bundle.message.desc)]});
             } else {
                 let msg = `Error: ${challengeName} is not a valid challenge. Valid challenges:\n`;
-                msg += utils.formatArrayAsList(constants.spinnableChallenges);
+                msg += challengeList(constants.spinnableChallenges);
                 message.reply(utils.errorMessageBuilder(msg));
             }
         } else {
             let msg = 'Possible challenges:\n';
-            msg += utils.formatArrayAsList(constants.spinnableChallenges);
+            msg += challengeList(constants.spinnableChallenges);
             message.reply(msg);
         }
         break;
