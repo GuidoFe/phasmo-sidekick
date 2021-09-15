@@ -12,7 +12,6 @@ client.once('ready', () => {
 client.login(process.env.TOKEN);
 
 let challengeList = function(list) {
-    let msg = 'Possible challenges:\n';
     chList = [];
     for (name of list) {
         ch = constants.challenges[name];
