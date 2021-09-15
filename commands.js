@@ -1,37 +1,22 @@
 const constants = require('./constants');
-
-pickRandom = function(items) {
-    // Pick a random item from the list items
-    // result = Math.floor(Math.random() * constants.items.length);
-    return items[Math.floor(Math.random() * items.length)];
-};
-
+const utils = require('./utils');
 module.exports = {
 
     item: function() {
-        return pickRandom(constants.items);
+        return utils.pickRandom(constants.items);
     },
 
     map: function(args) {
         if (args.length > 0) {
             result = args[Math.floor(Math.random() * args.length)];
-            let msg = 'Random choice between {';
-            const parsedArgs = args.map((x) => {
-                return constants.maps[x];
-            });
-            for (m of parsedArgs) {
-                msg += m + ', ';
-            }
-            msg = msg.slice(0, -2);
-            msg += '}:\n**' + constants.maps[result] + '**';
-            return msg;
+            return constants.maps[result];
         } else {
-            return pickRandom(Object.values(constants.maps));
+            return utils.pickRandom(Object.values(constants.maps));
         }
     },
 
     challenge: function() {
-        return pickRandom(Object.keys(constants.challenges));
+        return utils.pickRandom(Object.keys(constants.challenges));
     },
 
     spin: function(challengeCode) {
@@ -47,13 +32,13 @@ module.exports = {
                         list.push(traitName);
                     }
                 }
-                trait = pickRandom(list);
+                trait = utils.pickRandom(list);
                 description = wheel[trait]['desc'];
             } else {
-                trait = pickRandom(Object.keys(wheel));
+                trait = utils.pickRandom(Object.keys(wheel));
                 description = wheel[trait];
             }
-            return {valid: true, message: `**${trait}**: ${description}`};
+            return {valid: true, message: {trait: trait, desc: description}};
         } else {
             return {valid: false, message: `Challenge ${challengeCode} not valid. Please contact the developer`};
         }

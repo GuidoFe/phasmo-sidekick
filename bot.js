@@ -2,65 +2,96 @@ const {Client, Intents, MessageEmbed} = require('discord.js');
 require('dotenv').config();
 const constants = require('./constants');
 const commands = require('./commands');
-
-const client = new Client({intents: [Intents.FLAGS.GUILDS]});
+const utils = require('./utils');
+const PREFIX = constants.prefix;
+const client = new Client({intents: [Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES]});
 client.once('ready', () => {
     console.log('Ready!');
 });
 client.login(process.env.TOKEN);
 
-client.on('interactionCreate', async (interaction) => {
-    if (!interaction.isCommand()) return;
-    switch (interaction.commandName) {
+client.on('messageCreate', (message) => {
+    // Stop if message is received in DMs
+    if (!message.guild) return;
+    if (message.guildId != '527614443581079583') return;
+    if (!message.content.startsWith(PREFIX)) return;
+    const args = message.content.split(' ').filter((value, index, arr) => {
+        return value != '';
+    });
+    if (args.length < 2) return;
+    switch (args[1]) {
     case 'item':
-        await interaction.reply(commands.item());
+        message.reply(commands.item());
         break;
     case 'challenge':
-        await interaction.reply(commands.challenge());
+        if (args.length > 2) {
+            if (args[2] == 'list') {
+                let msg = 'Possible challenges:\n';
+                msg += utils.formatObjectAsList(constants.challenges);
+                message.reply(msg);
+            } else {
+                const challenge = constants.challenges[args[2]];
+                if (challenge) {
+                    message.reply(`**${challenge['name']}**: ${challenge['desc']}`);
+                } else {
+                    let msg = `${args[2]} is not a valid challenge.\nPossible challenges:\n`;
+                    msg += utils.formatObjectAsList(constants.challenges);
+                    message.reply(utils.errorMessageBuilder(msg));
+                }
+            }
+        } else {
+            message.reply(commands.challenge());
+        }
         break;
     case 'spin':
-        const bundle = commands.spin(interaction.options.getString('challenge'));
-        console.log('Arguments: %s', interaction.options.getString('challenge'));
-        if (bundle.valid) {
-            await interaction.reply(bundle.message);
+        if (args[2]) {
+            const challengeName = args[2];
+            const bundle = commands.spin(challengeName);
+            if (bundle.valid) {
+                message.reply({embeds: [new MessageEmbed()
+                    .setColor(utils.randomVibrantColor())
+                    .setTitle(bundle.message.trait)
+                    .setDescription(bundle.message.desc)]});
+            } else {
+                let msg = `Error: ${challengeName} is not a valid challenge. Valid challenges:\n`;
+                msg += utils.formatArrayAsList(constants.spinnableChallenges);
+                message.reply(utils.errorMessageBuilder(msg));
+            }
         } else {
-            await interaction.reply({content: bundle.message, ephemeral: true});
+            let msg = 'Possible challenges:\n';
+            msg += utils.formatArrayAsList(constants.spinnableChallenges);
+            message.reply(msg);
         }
         break;
     case 'map':
-        const stringMaps = interaction.options.getString('maps');
-        if (stringMaps != null) {
-            const mapList = stringMaps.split(' ').filter( (value, index, arr) => {
-                return value != '';
-            });
-            for (m of mapList) {
+        if (args.length > 2) {
+            maps = args.splice(2);
+            for (m of maps) {
                 if (!(m in constants.maps)) {
-                    await interaction.reply({content: `${m} is not a valid map.`, ephemeral: true});
-                    break;
+                    message.reply(utils.errorMessageBuilder(`${m} is not a valid map.`));
+                    return;
                 }
             }
-            await interaction.reply(commands.map(mapList));
+            message.reply(commands.map(maps));
         } else {
-            await interaction.reply(commands.map([]));
+            message.reply(commands.map([]));
         };
         break;
     case 'clues':
-        let arg = interaction.options.getString('clues');
-        if (!arg) {
-            arg = '';
+        let cluesList = [];
+        if (args.length > 2) {
+            cluesList = args.splice(2);
         }
-        const cluesNames = arg.split(' ').filter((value, index, arr) => {
-            return value != '';
-        });
         const wrongArgs = [];
-        for (clue of cluesNames) {
+        for (clue of cluesList) {
             if (!(clue in constants.commonClueNames)) {
-                wrongArgs.put(clue);
+                wrongArgs.push(clue);
             }
         }
         if (wrongArgs.length != 0) {
             if (wrongArgs.length == 1) {
-                await interaction.reply({content: `${wrongArgs[0]} is not a valid clue`, ephemeral: true});
+                message.reply(utils.errorMessageBuilder(`${wrongArgs[0]} is not a valid clue`));
             } else {
                 let stringWrongArgs = '';
                 for (w of wrongArgs) {
@@ -68,25 +99,28 @@ client.on('interactionCreate', async (interaction) => {
                 }
                 stringWrongArgs = stringWrongArgs.splice(0, -2);
                 stringWrongArgs += ' are not valid evidence.';
-                await interaction.repy({content: stringWrongArgs, ephemeral: true});
+                message.repy(utils.errorMessageBuilder(stringWrongArgs));
             }
         } else {
-            await interaction.reply(commands.clues(cluesNames.map((x) => {
+            message.reply(commands.clues(cluesList.map((x) => {
                 return constants.commonClueNames[x];
             })));
         }
-
         break;
     case 'help':
-        const embed = new MessageEmbed().setDescription(commands.help(interaction.options.getString('command')));
-        if (interaction.options.getString('command')) {
-            embed.setTitle(`Help for ${interaction.options.getString('command')}`);
+        if (args.length > 2 && !(args[2] in constants.help)) {
+            message.reply(utils.errorMessageBuilder(`${args[2]} is not a valid command.`));
+            return;
+        }
+        const embed = new MessageEmbed().setDescription(commands.help(args[2]));
+        if (args.length > 2) {
+            embed.setTitle(`Help for ${args[2]}`);
         } else {
             embed.setTitle('Commands');
         }
-        await interaction.reply({embeds: [embed]});
+        message.reply({embeds: [embed]});
         break;
     default:
-        await interaction.reply({content: 'Error: command not valid', ephemeral: true});
+        message.reply(utils.errorMessageBuilder('Error: command not valid'));
     }
 });

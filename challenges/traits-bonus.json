@@ -3,6 +3,7 @@
     "code": "traits-bonus",
     "hasWheel": true,
     "hasDuplicates": true,
+    "desc": "The bonus wheel for the Phasmophobia Trait Challenge, by Destiny. Read the rules at his website: https://www.dposofficial.com/phasmophobiatraitschallenge.html",
     "wheel":{
         "Add Another Trait": {"n":1, "desc": "Another trait must be added to one person. Spin the Trait Wheel first and then decide who shall be the unlucky one to get another trait stacked."},
         "Add Two Traits": {"n": 1, "desc": "Two traits must be added. You can either choose to stack both of them on one person or split them between two people. Either way, someone's getting another trait (or two) stacked on them."},
