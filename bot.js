@@ -17,8 +17,7 @@ let challengeList = function(list) {
         ch = constants.challenges[name];
         chList.push(`**${ch.name}** (code \`${ch.code}\`)`);
     }
-    msg += utils.formatArrayAsList(chList);
-    return msg;
+    return utils.formatArrayAsList(chList);
 }
 
 client.on('messageCreate', (message) => {
