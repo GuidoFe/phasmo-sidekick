@@ -14,7 +14,7 @@ client.login(process.env.TOKEN);
 client.on('messageCreate', (message) => {
     // Stop if message is received in DMs
     if (!message.guild) return;
-    if (message.guildId != '527614443581079583') return;
+    // if (message.guildId != '527614443581079583') return;
     if (!message.content.startsWith(PREFIX)) return;
     const args = message.content.split(' ').filter((value, index, arr) => {
         return value != '';
