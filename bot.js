@@ -41,7 +41,8 @@ client.on('messageCreate', (message) => {
                 }
             }
         } else {
-            message.reply(commands.challenge());
+            const ch = constants.challenges[commands.challenge()];
+            message.reply(`**${ch['name']}** (code \`${ch['code']}\`)`);
         }
         break;
     case 'spin':
