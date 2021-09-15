@@ -28,7 +28,11 @@ client.on('messageCreate', (message) => {
         if (args.length > 2) {
             if (args[2] == 'list') {
                 let msg = 'Possible challenges:\n';
-                msg += utils.formatObjectAsList(constants.challenges);
+                chList = [];
+                for (ch in Object.values(constants.challenges)) {
+                    chList.push(`**${ch.name}** (code \`${ch.code}\`)`);
+                }
+                msg += utils.formatArrayAsList(chList);
                 message.reply(msg);
             } else {
                 const challenge = constants.challenges[args[2]];
