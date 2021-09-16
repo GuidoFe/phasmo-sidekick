@@ -97,17 +97,18 @@ client.on('messageCreate', (message) => {
                 wrongArgs.push(clue);
             }
         }
+	console.log(wrongArgs);
         if (wrongArgs.length != 0) {
             if (wrongArgs.length == 1) {
                 message.reply(utils.errorMessageBuilder(`${wrongArgs[0]} is not a valid clue`));
             } else {
                 let stringWrongArgs = '';
                 for (w of wrongArgs) {
-                    stringWrongArgs + w + ', ';
+                    stringWrongArgs += w + ', ';
                 }
-                stringWrongArgs = stringWrongArgs.splice(0, -2);
-                stringWrongArgs += ' are not valid evidence.';
-                message.repy(utils.errorMessageBuilder(stringWrongArgs));
+                stringWrongArgs = stringWrongArgs.slice(0, -2);
+                stringWrongArgs += ' are not valid evidence.\n\n' + constants.help['clues'];
+                message.reply(utils.errorMessageBuilder(stringWrongArgs));
             }
         } else {
             message.reply(commands.clues(cluesList.map((x) => {
