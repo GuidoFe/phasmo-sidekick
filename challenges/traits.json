@@ -3,6 +3,7 @@
     "code": "traits",
     "hasWheel": true,
     "hasDuplicates": false,
+    "desc": "The famous Phasmophobia Trait Challenge, created by Destiny. See the rules at his website: https://www.dposofficial.com/phasmophobiatraitschallenge.html",
     "wheel":{
         "Archaeologist": "This player must find the bone as a priority. They cannot do anything else until they take a successful picture of it and pick it up.",
         "Asthmatic": "This player cannot use the smudge sticks due to their weak lungs.",
