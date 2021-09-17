@@ -11,14 +11,14 @@ client.once('ready', () => {
 });
 client.login(process.env.TOKEN);
 
-let challengeList = function(list) {
+const challengeList = function(list) {
     chList = [];
     for (name of list) {
         ch = constants.challenges[name];
         chList.push(`**${ch.name}** (code \`${ch.code}\`)`);
     }
     return utils.formatArrayAsList(chList);
-}
+};
 
 client.on('messageCreate', (message) => {
     // Stop if message is received in DMs
@@ -28,7 +28,11 @@ client.on('messageCreate', (message) => {
     const args = message.content.split(' ').filter((value, index, arr) => {
         return value != '';
     });
-    if (args.length < 2) return;
+    if (args.length < 2) {
+        const embed = new MessageEmbed().setDescription(commands.help()).setTitle('Commands');
+        message.reply({embeds: [embed]});
+        return;
+    }
     switch (args[1]) {
     case 'item':
         message.reply(commands.item());
