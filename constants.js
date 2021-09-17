@@ -83,6 +83,7 @@ module.exports = Object.freeze({
     challenges: challengeList,
     spinnableChallenges: challengesWithWheel,
     help: {
+	'help': `❓ \`${PREFIX} help COMMAND\`: general help message, or help about COMMAND if you specify it`,
         'item': `🔦 \`${PREFIX} item\`: pick a random item`,
         'map': `🗺️  \`${PREFIX} map LIST\`: choose a random map between those indicated. If List is empty, it will consider every map. List is a sequence of these letters separated by spaces:\n    - t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highschool\n    - p: Prison\n    - a: Asylum`,
         'spin': `🌀\`${PREFIX} spin CHALLENGE_NAME\`: spin the wheel of the challenge CHALLENGE_NAME, if it has one.`,
