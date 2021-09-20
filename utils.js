@@ -8,14 +8,14 @@ module.exports = {
     formatArrayAsList: function(arr) {
         let msg = '';
         for (e of arr) {
-            msg += '    - ' + e + '\n';
+            msg += '- ' + e + '\n';
         }
         return msg.slice(0, -1);
     },
     formatObjectAsList: function(ob) {
         let msg = '';
         for (e of Object.keys(ob)) {
-            msg += '    - ' + e + '\n';
+            msg += '- ' + e + '\n';
         }
         return msg.slice(0, -1);
     },
