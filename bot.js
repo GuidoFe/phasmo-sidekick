@@ -23,7 +23,7 @@ const challengeList = function(list) {
 client.on('messageCreate', (message) => {
     // Stop if message is received in DMs
     if (!message.guild) return;
-    // if (message.guildId != '527614443581079583') return;
+    if (message.guildId != '527614443581079583') return;
     if (!message.content.startsWith(PREFIX)) return;
     const args = message.content.split(' ').filter((value, index, arr) => {
         return value != '';
@@ -40,7 +40,7 @@ client.on('messageCreate', (message) => {
     case 'challenge':
         if (args.length > 2) {
             if (args[2] == 'list') {
-                message.reply(challengeList(Object.keys(constants.challenges)));
+                message.reply(`For more info about a particular challenge, use the command \`${PREFIX} challenge CODE\`\n${challengeList(Object.keys(constants.challenges))}`);
             } else {
                 const challenge = constants.challenges[args[2]];
                 if (challenge) {
