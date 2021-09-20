@@ -1,5 +1,5 @@
 {
-    "name": "Photo challenge",
+    "name": "Photo Challenge",
     "code": "photo",
     "hasWheel": false,
     "desc": "You start with only photocameras and flashlights. Everytime you take a valid photo, you unlock one type of equipment. You can take only two photos of the same type (2 interactions, 2 fingerprints, 2 footsteps...). The ghost photo unlocks two objects."
