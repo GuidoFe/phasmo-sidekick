@@ -23,7 +23,8 @@
     "discord-api-types": "^0.23.1",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
-    "module-alias": "^2.2.2"
+    "module-alias": "^2.2.2",
+    "ansi-regex": ">=6.0.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
