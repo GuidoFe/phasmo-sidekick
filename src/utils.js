@@ -1,16 +1,29 @@
 const Color = require('color');
 const {MessageEmbed} = require('discord.js');
 module.exports = {
+    formatArrayAsList: function(array) {
+        let msg = '';
+        for (element of array) {
+            msg += '- ' + element + '\n';
+        }
+        return msg.slice(0, -1);
+    },
+    buildChallengeList: function(challengeCodes, challenges) {
+        const rowsToPrint = [];
+        for (code of challengeCodes) {
+            challenge = challenges[code];
+            rowsToPrint.push(`**${challenge.name}** (code \`${challenge.code}\`)`);
+        }
+        return this.formatArrayAsList(rowsToPrint);
+    },
+    getMessageArguments: function(message) {
+        return message.content.split(' ').filter((value, index, arr) => {
+            return value != '';
+        });
+    },
     randomVibrantColor: function() {
         const h = Math.floor(Math.random() * 36) * 10;
         return Color.hsl(h, 100, 70).hex();
-    },
-    formatArrayAsList: function(arr) {
-        let msg = '';
-        for (e of arr) {
-            msg += '- ' + e + '\n';
-        }
-        return msg.slice(0, -1);
     },
     formatObjectAsList: function(ob) {
         let msg = '';
