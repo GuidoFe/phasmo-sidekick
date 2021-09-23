@@ -1,40 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const challengesFolder = 'challenges';
-const challengeList = {};
 const PREFIX = '!ph';
-const challengesWithWheel = [];
-try {
-    // Get the files as an array
-    const files = fs.readdirSync(challengesFolder);
-    // Loop them all with the new for...of
-    for (const file of files) {
-        // Get the full paths
-        const filePath = path.join(challengesFolder, file);
-        // Stat the file to see if we have a file or dir
-        const stat = fs.statSync(filePath);
-        if (stat.isFile() && filePath.endsWith('.json')) {
-            console.log( 'Loading %s as challenge...', filePath );
-            try {
-                jsonString = fs.readFileSync(filePath, 'utf8');
-                try {
-                    jsonObject = JSON.parse(jsonString);
-                    challengeList[jsonObject.code] = jsonObject;
-                    if (jsonObject['hasWheel']) {
-                        challengesWithWheel.push(jsonObject.code);
-                    }
-                } catch (jsonErr) {
-                    console.log('Error parsing challenge %s: %s', filePath, jsonErr);
-                }
-            } catch (err) {
-                console.log('Error reading %s: %s', filePath, err);
-            }
-        }
-    }
-    console.log('Ended parsing challenges');
-} catch ( e ) {
-    console.error( 'Error: %s', e );
-}
 module.exports = Object.freeze({
     prefix: PREFIX,
     items: ['Spirit box', 'Book', 'Photo Camera', 'EMF', 'Video Camera', 'UV Flashlight', 'D.O.T.S.', 'Candle', 'Crucifix', 'Glow Stick', 'Head Mounted Camera', 'Motion Sensor', 'Lighter', 'Parabolic Mic', 'Salt', 'Pills', 'Smudge Stick', 'Sound Sensor', 'Strong Flashlight', 'Thermometer', 'Tripod'],
@@ -80,6 +44,4 @@ module.exports = Object.freeze({
         'Yokai': [3, 4, 6],
         'Yurei': [4, 5, 6],
     },
-    challenges: challengeList,
-    spinnableChallenges: challengesWithWheel,
 });

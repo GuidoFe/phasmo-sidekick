@@ -1,10 +1,10 @@
 /** Test */
 class PrefixCommand {
-    execute() { throw 'Command not defined!' };
+    execute() {};
     name;
-    shortDescription;
-    longDescription;
-    constructor (name) {
+    shortDescription = '';
+    longDescription = '';
+    constructor(name) {
         this.name = name;
     }
     setCommand(command) {
