@@ -7,7 +7,7 @@ class Map extends PrefixCommand {
         this.dataManager = dataManager;
         this.prefix = dataManager.constants.prefix;
         const symbol = '🗺️';
-        this.shortDescription = `\`${symbol} ${this.prefix} map LIST\`: choose a random map between those indicated.`;
+        this.shortDescription = `${symbol} \`${this.prefix} map LIST\`: choose a random map between those indicated.`;
         this.longDescription = `${this.shortDescription} If List is empty, it will consider every map. List is a sequence of these letters separated by spaces:\n    - t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highschool\n    - p: Prison\n    - a: Asylum`;
     };
     pickMap(mapsInitialsPool) {
