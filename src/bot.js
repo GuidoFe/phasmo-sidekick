@@ -7,13 +7,25 @@ const path = require('path');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/challenges';
 const commandsFolder = path.dirname(require.resolve('@index')) + '/commands';
 const CommandManager = require('@modules/CommandManager');
+const utils = require('@utils');
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 const commandManager = new CommandManager(commandsFolder, dataManager);
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
+const statusMessages = [
+    {message: 'with the light switches', type: 0},
+    {message: 'you through the window', type: 3},
+    {message: 'people screaming 👻', type: 2},
+    {message: 'basketball in the lobby', type: 0},
+];
 client.once('ready', () => {
     console.log('Ready!');
+    console.log(`Currently in ${client.guilds.cache.size} servers.`);
+    setInterval(()=>{
+	const activity = utils.pickRandom(statusMessage);
+        client.user.setActivity(activity.message, {type: activity.type});
+    }, 60000);
 });
 client.login(process.env.TOKEN);
 client.on('messageCreate', async (message) => {
