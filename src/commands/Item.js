@@ -5,7 +5,8 @@ class Item extends PrefixCommand {
         super('item');
         this.dataManager = dataManager;
         this.prefix = dataManager.constants.prefix;
-        this.shortDescription = `🔦 \`${this.prefix} item\`: pick a random item`;
+        this.commandUsage = `🔦 ${this.prefix} item`;
+        this.shortDescription = `Pick a random item`;
         this.longDescription = this.shortDescription;
     };
     execute(message) {

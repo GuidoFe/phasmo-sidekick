@@ -6,7 +6,8 @@ class Pick extends PrefixCommand {
     constructor(dataManager) {
         super('pick');
         this.prefix = dataManager.constants.prefix;
-        this.shortDescription = `🎲 \`${this.prefix} pick A B C ...\`: pick a random element from the specified list. Useful when deciding who should talk with the ghost alone.`;
+        this.commandUsage = `🎲 ${this.prefix} pick \`A B C ...\``;
+        this.shortDescription = `Pick a random element from the specified list. Useful when deciding who should talk with the ghost alone.`;
         this.longDescription = `${this.shortDescription} Example: \`${this.prefix} pick Georgina Darlene Martin\``;
         this.dataManager = dataManager;
     }

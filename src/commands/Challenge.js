@@ -6,8 +6,9 @@ class Challenge extends PrefixCommand {
     constructor(dataManager) {
         super('challenge');
         this.prefix = dataManager.constants.prefix;
-        this.shortDescription = `⚔️ \`${this.prefix} challenge\`: pick a random challenge. Add 'list' at the end to list all the possible challenges.`;
-        this.longDescription = `${this.shortDescription} Get a challenge description with \`${this.prefix} challenge CHALLENGE_NAME\``;
+        this.commandUsage = `⚔️ ${this.prefix} challenge`;
+        this.shortDescription = 'Pick a random challenge. Add `list` at the end to list all the possible challenges.';
+        this.longDescription = `${this.shortDescription} Get a challenge description with ${this.prefix} challenge \`challenge_name\``;
         this.dataManager = dataManager;
     }
     execute(message) {

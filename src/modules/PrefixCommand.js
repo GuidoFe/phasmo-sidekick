@@ -2,6 +2,7 @@
 class PrefixCommand {
     execute() {};
     name;
+    commandUsage = '';
     shortDescription = '';
     longDescription = '';
     constructor(name) {

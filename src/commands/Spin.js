@@ -7,7 +7,8 @@ class Spin extends PrefixCommand {
         super('spin');
         this.dataManager = dataManager;
         this.prefix = dataManager.constants.prefix;
-        this.shortDescription = `🌀\`${this.prefix} spin CHALLENGE_NAME\`: spin the wheel of the challenge CHALLENGE_NAME, if it has one.`;
+        this.commandUsage = `🌀 ${this.prefix} spin \`challenge_name\``;
+        this.shortDescription = `Spin the wheel of the challenge \`challenge_name\`, if it has one.`;
         this.longDescription = this.shortDescription;
     };
     execute(message) {

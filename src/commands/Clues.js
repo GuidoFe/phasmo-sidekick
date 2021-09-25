@@ -7,8 +7,9 @@ class Clues extends PrefixCommand {
         super('clues');
         this.dataManager = dataManager;
         this.prefix = dataManager.constants.prefix;
-        this.shortDescription = `🔎\`${this.prefix} clues CLUES\`: Show which ghosts are possible with those clues and which evidence is lacking.`;
-        this.longDescription = `${this.shortDescription} Clues:\n    - \`emf\` or \`emf5\`\n    - \`book\` or \`writing\` or \`ghostwriting\`\n    - \`fingerprints\` or \`fingers\`\n    - \`spirit\` or \`spiritbox\`\n    - \`orbs\` or \`ghostorbs\`\n    - \`freezing\` or \`temps\`\n    - \`dots\``;
+        this.commandUsage = `🔎 ${this.prefix} clues \`clues_list\``;
+        this.shortDescription = `Show which ghosts are possible with those clues and which evidence is lacking.`;
+        this.longDescription = `${this.shortDescription} Clues:\n    - \`emf\` or \`emf5\`\n    - \`book\` or \`writing\` or \`ghostwriting\`\n    - \`fingerprints\` or \`fingers\`\n    - \`spirit\` or \`spiritbox\`\n    - \`orbs\` or \`ghostorbs\`\n    - \`freezing\` or \`temps\`\n    - \`dots\`\n\nExample: \`${this.prefix} clues emf orbs\``;
     }
     filterGhosts(cluesCodes) {
         const ghostPool = {};

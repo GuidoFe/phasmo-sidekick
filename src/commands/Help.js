@@ -7,18 +7,23 @@ class Help extends PrefixCommand {
     constructor(dataManager) {
         super('help');
         this.dataManager = dataManager;
-        this.commandList = {};
         this.prefix = dataManager.constants.prefix;
-        this.fullHelpMessage = `❓ \`${this.prefix} help COMMAND\`: general help message, or help about COMMAND if you specify it.\n\n`;
+        this.commandUsage = `❓ ${this.prefix} help \`command\``;
+        this.shortDescription = 'General help message, or help about `command` if you specify it.';
+        this.longDescription = this.shortDescription;
+        this.embedFullHelpMessage = new MessageEmbed().addField(this.commandUsage, this.shortDescription);
+        this.embedFullHelpMessage.setTitle('Commands');
+        this.commandList = {'help': {}};
     }
     init(commands) {
         for (const [commandName, command] of Object.entries(commands)) {
             this.commandList[commandName] = {
                 shortDescription: command.shortDescription,
                 longDescription: command.longDescription,
+                commandUsage: command.commandUsage,
             };
             if (commandName != 'help') {
-                this.fullHelpMessage += command.shortDescription + '\n\n';
+                this.embedFullHelpMessage.addField(command.commandUsage, command.shortDescription);
             };
         };
     };
@@ -28,15 +33,15 @@ class Help extends PrefixCommand {
             message.reply(utils.errorMessageBuilder(`${args[2]} is not a valid command.`));
             return Help.ERR_COMMAND_NOT_VALID;
         }
-        const embed = new MessageEmbed();
         if (args.length <= 2) {
-            embed.setTitle('Commands');
-            embed.setDescription(this.fullHelpMessage);
+            message.reply({embeds: [this.embedFullHelpMessage]});
         } else {
+            const embed = new MessageEmbed();
             embed.setTitle(`Help for ${args[2]}`);
-            embed.setDescription(this.commandList[args[2]].longDescription);
+            const seekedCommand = this.commandList[args[2]];
+            embed.addField(seekedCommand.commandUsage, seekedCommand.longDescription);
+            message.reply({embeds: [embed]});
         }
-        message.reply({embeds: [embed]});
         return 0;
     };
 }
