@@ -23,7 +23,7 @@ client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
     setInterval(()=>{
-	const activity = utils.pickRandom(statusMessages);
+        const activity = utils.pickRandom(statusMessages);
         client.user.setActivity(activity.message, {type: activity.type});
     }, 60000);
 });
