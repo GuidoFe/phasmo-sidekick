@@ -1,6 +1,6 @@
 const Color = require('color');
 const {MessageEmbed} = require('discord.js');
-const { exec } = require('child_process');
+const {exec} = require('child_process');
 module.exports = {
     formatArrayAsList: function(array) {
         let msg = '';
@@ -56,7 +56,7 @@ module.exports = {
         });
     },
     async sendLogMessage(message) {
-        this.sh(`telegram-send -g 'Phasmo Helper:\n${message}'`)
+        this.sh(`telegram-send -g --format markdown '*Phasmo Helper*\n\n${message}'`)
             .catch((_err) => {
                 console.error(message);
             });

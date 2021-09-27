@@ -34,3 +34,6 @@ client.on('messageCreate', async (message) => {
     // if (message.guildId != '527614443581079583') return;
     commandManager.parseMessage(message);
 });
+client.on('guildCreate', (guild) => {
+    utils.sendLogMessage(`Joined new Guild: ${guild.name}\n${guild.iconURL({dynamic: true, size: 4096})}`);
+});
