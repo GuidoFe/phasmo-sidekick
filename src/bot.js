@@ -13,18 +13,33 @@ dataManager.init(constants, challengesFolder);
 const commandManager = new CommandManager(commandsFolder, dataManager);
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
-// const statusMessages = [
-//     {message: 'with the light switches', type: 0},
-//     {message: 'you through the window', type: 3},
-//     {message: 'people screaming 👻', type: 2},
-//     {message: 'basketball in the lobby', type: 0},
-// ];
+const statusMessages = [
+    {message: 'basketball', type: 0},
+    {message: 'Ghostbusters', type: 3},
+    {message: 'Casper', type: 3},
+    {message: 'with the Ouija', type: 0},
+    {message: 'The Shining', type: 3},
+    {message: 'Phasmophobia', type: 0},
+    {message: () => {
+        return `in ${client.guilds.cache.size} servers`;
+    }, type: 0},
+];
+const updateActivity = function() {
+    activity = utils.pickRandom(statusMessages);
+    let msg = '';
+    if (typeof activity.message === 'function') {
+        msg = activity.message();
+    } else {
+        msg = activity.message;
+    }
+    client.user.setActivity(`${msg} | !ph`, {type: activity.type});
+};
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
-    client.user.setActivity(`in ${client.guilds.cache.size} servers | !ph`, 0);
+    updateActivity();
     setInterval(()=>{
-        client.user.setActivity(`in ${client.guilds.cache.size} servers | !ph`, 0);
+        updateActivity();
     }, 60000);
 });
 client.login(process.env.TOKEN);
