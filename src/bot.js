@@ -22,11 +22,10 @@ const client = new Client({intents: [Intents.FLAGS.GUILDS,
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
-    client.user.setActivity('!ph', 0);
-//    setInterval(()=>{
-//        const activity = utils.pickRandom(statusMessages);
-//        client.user.setActivity(activity.message, {type: activity.type});
-//    }, 60000);
+    client.user.setActivity(`in ${client.guilds.cache.size} servers | !ph`, 0);
+    setInterval(()=>{
+        client.user.setActivity(`in ${client.guilds.cache.size} servers | !ph`, 0);
+    }, 60000);
 });
 client.login(process.env.TOKEN);
 client.on('messageCreate', async (message) => {
