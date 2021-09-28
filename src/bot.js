@@ -13,19 +13,20 @@ dataManager.init(constants, challengesFolder);
 const commandManager = new CommandManager(commandsFolder, dataManager);
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
-const statusMessages = [
-    {message: 'with the light switches', type: 0},
-    {message: 'you through the window', type: 3},
-    {message: 'people screaming 👻', type: 2},
-    {message: 'basketball in the lobby', type: 0},
-];
+// const statusMessages = [
+//     {message: 'with the light switches', type: 0},
+//     {message: 'you through the window', type: 3},
+//     {message: 'people screaming 👻', type: 2},
+//     {message: 'basketball in the lobby', type: 0},
+// ];
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
-    setInterval(()=>{
-        const activity = utils.pickRandom(statusMessages);
-        client.user.setActivity(activity.message, {type: activity.type});
-    }, 60000);
+    client.user.setActivity('!ph', 0);
+//    setInterval(()=>{
+//        const activity = utils.pickRandom(statusMessages);
+//        client.user.setActivity(activity.message, {type: activity.type});
+//    }, 60000);
 });
 client.login(process.env.TOKEN);
 client.on('messageCreate', async (message) => {
