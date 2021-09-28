@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "../dest",
+        "allowJs": true,
+        "target": "es5",
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "module": "commonjs",
+        "baseUrl": ".",
+        "paths": {
+            "@modules/*": ["modules/*"],
+            "@commands/*": ["commands/*"],
+            "@challenges/*": ["challenges/*"],
+            "@utils": ["utils.js"],
+            "@constants": ["constants"],
+            "@index": ["bot.ts"]
+        }
+    },
+    "incude": ["./**/*"]
+}

@@ -1,13 +1,14 @@
-require('module-alias/register');
-const {Client, Intents} = require('discord.js');
-require('dotenv').config({path: '../.env'});
-const constants = require('@constants');
-const DataManager = require('@modules/DataManager');
-const path = require('path');
+import 'module-alias/register';
+import {Client, Intents} from 'discord.js';
+import * as dotenv from "dotenv";
+dotenv.config({path: '../.env'});
+import constants = require('@constants');
+import DataManager = require('@modules/DataManager');
+import CommandManager = require('@modules/CommandManager');
+import utils = require('@utils');
+import path = require('path');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/challenges';
 const commandsFolder = path.dirname(require.resolve('@index')) + '/commands';
-const CommandManager = require('@modules/CommandManager');
-const utils = require('@utils');
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 const commandManager = new CommandManager(commandsFolder, dataManager);
@@ -24,7 +25,7 @@ client.once('ready', () => {
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
     setInterval(()=>{
         const activity = utils.pickRandom(statusMessages);
-        client.user.setActivity(activity.message, {type: activity.type});
+        client.user!.setActivity(activity.message, {type: activity.type});
     }, 60000);
 });
 client.login(process.env.TOKEN);

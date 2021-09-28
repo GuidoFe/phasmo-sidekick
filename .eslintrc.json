@@ -1,12 +1,17 @@
 {
-    "parser": "@babel/eslint-parser",
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-esling"
+    ],
     "env": {
         "commonjs": true,
         "es2021": true,
         "node": true
     },
     "extends": [
-        "google"
+        "google",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "requireConfigFile": false,

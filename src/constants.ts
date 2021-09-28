@@ -1,6 +1,5 @@
-const PREFIX = '!ph';
-module.exports = Object.freeze({
-    prefix: PREFIX,
+export = Object.freeze({
+    prefix: '!ph',
     items: ['Spirit box', 'Book', 'Photo Camera', 'EMF', 'Video Camera', 'UV Flashlight', 'D.O.T.S.', 'Candle', 'Crucifix', 'Glow Stick', 'Head Mounted Camera', 'Motion Sensor', 'Lighter', 'Parabolic Mic', 'Salt', 'Pills', 'Smudge Stick', 'Sound Sensor', 'Strong Flashlight', 'Thermometer', 'Tripod'],
 
     maps: {
