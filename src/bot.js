@@ -35,6 +35,8 @@ const updateActivity = function() {
     client.user.setActivity(`${msg} | !ph`, {type: activity.type});
 };
 client.once('ready', () => {
+    const s = 'Hello m\'lady';
+    utils.sendLogMessage(s);
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
     updateActivity();

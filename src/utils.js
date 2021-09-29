@@ -56,8 +56,10 @@ module.exports = {
         });
     },
     async sendLogMessage(message) {
+        message = message.replace(/'/g, 'ʹ');
         this.sh(`telegram-send -g --format markdown '*Phasmo Helper*\n\n${message}'`)
-            .catch((_err) => {
+            .catch((err) => {
+                console.error(err);
                 console.error(message);
             });
     },
