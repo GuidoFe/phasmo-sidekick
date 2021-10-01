@@ -5,7 +5,8 @@
   "main": "src/bot.js",
   "scripts": {
     "test": "NODE_PATH=./src mocha",
-    "start": "cd src && node bot.js"
+    "start": "cd dist && node bot.js",
+    "compile": "cd src && tsc"
   },
   "repository": {
     "type": "git",
@@ -38,11 +39,11 @@
     "typescript": "^4.4.3"
   },
   "_moduleAliases": {
-    "@modules": "dest/modules",
-    "@commands": "dest/commands",
-    "@challenges": "dest/challenges",
-    "@utils": "dest/utils.js",
-    "@constants": "dest/constants.js",
-    "@index": "dest/bot.js"
+    "@modules": "dist/modules",
+    "@commands": "dist/commands",
+    "@challenges": "challenges",
+    "@utils": "dist/utils.js",
+    "@constants": "dist/constants",
+    "@index": "dist/bot.js"
   }
 }

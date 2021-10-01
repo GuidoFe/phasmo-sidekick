@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "../dest",
+        "outDir": "../dist",
         "allowJs": true,
         "target": "es5",
         "noImplicitAny": true,
@@ -8,12 +8,16 @@
         "noImplicitThis": true,
         "module": "commonjs",
         "baseUrl": ".",
+        "resolveJsonModule": true,
+        "types": [
+            "color"
+        ],
         "paths": {
-            "@modules/*": ["modules/*"],
-            "@commands/*": ["commands/*"],
-            "@challenges/*": ["challenges/*"],
+            "@modules": ["modules"],
+            "@commands": ["commands"],
+            "@challenges/*": ["../challenges/*"],
             "@utils": ["utils.js"],
-            "@constants": ["constants"],
+            "@constants": ["./constants"],
             "@index": ["bot.ts"]
         }
     },

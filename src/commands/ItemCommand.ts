@@ -1,17 +1,19 @@
-const PrefixCommand = require('@modules/PrefixCommand');
-const utils = require('@utils');
-class Item extends PrefixCommand {
-    constructor(dataManager) {
-        super('item');
-        this.dataManager = dataManager;
+import {PrefixCommand, DataManager} from '@modules';
+import utils = require('@utils');
+import {Message} from 'discord.js';
+
+export class ItemCommand extends PrefixCommand {
+    prefix: string;
+    name = 'item';
+    constructor(dataManager: DataManager) {
+        super(dataManager);
         this.prefix = dataManager.constants.prefix;
         this.commandUsage = `🔦 ${this.prefix} item`;
         this.shortDescription = `Pick a random item`;
         this.longDescription = this.shortDescription;
     };
-    execute(message) {
+    execute(message: Message) {
         message.reply(utils.pickRandom(this.dataManager.constants.items));
         return 0;
     };
 };
-module.exports = Item;

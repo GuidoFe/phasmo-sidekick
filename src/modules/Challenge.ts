@@ -1,6 +1,6 @@
-interface WheelElement {
-    n: number;
-
+export type WheelElement = {
+    n?: number;
+    desc: string;
 };
 export interface Challenge {
     name: string;
@@ -9,4 +9,5 @@ export interface Challenge {
     hasDuplicates: boolean;
     desc: string;
     wheel: Map<string, WheelElement>;
+    pool:Array<string>;
 }

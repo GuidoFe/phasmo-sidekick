@@ -1,17 +1,19 @@
-const PrefixCommand = require('@modules/PrefixCommand');
-const utils = require('@utils');
+import {PrefixCommand, DataManager} from '@modules';
+import utils = require('@utils');
+import {Message} from 'discord.js';
 
-class Pick extends PrefixCommand {
+export class PickCommand extends PrefixCommand {
     static ERR_NO_ARGS = 1;
-    constructor(dataManager) {
-        super('pick');
+    prefix: string;
+    name = 'pick';
+    constructor(dataManager: DataManager) {
+        super(dataManager);
         this.prefix = dataManager.constants.prefix;
         this.commandUsage = `🎲 ${this.prefix} pick \`A B C ...\``;
         this.shortDescription = `Pick a random element from the specified list. Useful when deciding who should talk with the ghost alone.`;
         this.longDescription = `${this.shortDescription} Example: \`${this.prefix} pick Georgina Darlene Martin\``;
-        this.dataManager = dataManager;
     }
-    execute(message) {
+    execute(message: Message) {
         const args = utils.getMessageArguments(message);
         if (args.length > 2) {
             const pool = args.slice(2);
@@ -19,8 +21,7 @@ class Pick extends PrefixCommand {
             return 0;
         } else {
             message.reply(utils.errorMessageBuilder(this.longDescription));
-            return Pick.ERR_NO_ARGS;
+            return PickCommand.ERR_NO_ARGS;
         }
     };
 };
-module.exports = Pick;

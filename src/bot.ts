@@ -1,31 +1,31 @@
 import 'module-alias/register';
-import {Client, Intents} from 'discord.js';
+import {Client, Intents, ActivityOptions} from 'discord.js';
 import * as dotenv from "dotenv";
 dotenv.config({path: '../.env'});
-import constants = require('@constants');
-import DataManager = require('@modules/DataManager');
-import CommandManager = require('@modules/CommandManager');
+import {DataManager, CommandManager, PrefixCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
-const challengesFolder = path.dirname(require.resolve('@index')) + '/challenges';
-const commandsFolder = path.dirname(require.resolve('@index')) + '/commands';
+const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
+import {constants} from '@constants';
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
-const commandManager = new CommandManager(commandsFolder, dataManager);
+import commandLibrary = require('@commands');
+const commandClasses = new Map<string, typeof PrefixCommand>(Object.entries(commandLibrary));
+const commandManager = new CommandManager(dataManager, commandClasses);
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
-const statusMessages = [
-    {message: 'with the light switches', type: 0},
-    {message: 'you through the window', type: 3},
-    {message: 'people screaming 👻', type: 2},
-    {message: 'basketball in the lobby', type: 0},
+const statusMessages: ActivityOptions[] = [
+    {name: 'with the light switches', type: 0},
+    {name: 'you through the window', type: 3},
+    {name: 'people screaming 👻', type: 2},
+    {name: 'basketball in the lobby', type: 0},
 ];
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
     setInterval(()=>{
         const activity = utils.pickRandom(statusMessages);
-        client.user!.setActivity(activity.message, {type: activity.type});
+        client.user!.setActivity(activity.name || '', {type: activity.type});
     }, 60000);
 });
 client.login(process.env.TOKEN);
