@@ -1,40 +1,41 @@
-const PrefixCommand = require('@modules/PrefixCommand');
-const utils = require('@utils');
+import {PrefixCommand, DataManager} from '@modules';
+import  utils = require('@utils');
+import {Message} from 'discord.js';
 
-class Challenge extends PrefixCommand {
+export class ChallengeCommand extends PrefixCommand {
     static ERR_CHALLENGE_NOT_VALID = 1;
-    constructor(dataManager) {
-        super('challenge');
+    prefix:string; 
+    name = 'challenge';
+    constructor(dataManager: DataManager) {
+        super(dataManager);
         this.prefix = dataManager.constants.prefix;
         this.commandUsage = `⚔️ ${this.prefix} challenge`;
         this.shortDescription = 'Pick a random challenge. Add `list` at the end to list all the possible challenges.';
         this.longDescription = `${this.shortDescription} Get a challenge description with ${this.prefix} challenge \`challenge_name\``;
-        this.dataManager = dataManager;
     }
-    execute(message) {
+    execute(message:Message): number {
         const challenges = this.dataManager.challengesList;
         const args = utils.getMessageArguments(message);
         if (args.length > 2) {
             if (args[2] == 'list') {
-                message.reply(`For more info about a particular challenge, use the command \`${this.prefix} challenge CODE\`\n${utils.buildChallengeList(Object.keys(challenges), challenges)}`);
+                message.reply(`For more info about a particular challenge, use the command \`${this.prefix} challenge CODE\`\n${utils.buildChallengeList(Array.from(challenges.keys()), challenges)}`);
                 return 0;
             } else {
-                const pickedChallenge = challenges[args[2]];
-                if (pickedChallenge) {
+                const pickedChallenge = challenges.get(args[2]);
+                if (pickedChallenge != null) {
                     message.reply(`**${pickedChallenge['name']}**: ${pickedChallenge['desc']}`);
                     return 0;
                 } else {
                     let msg = `${args[2]} is not a valid challenge.\nPossible challenges:\n`;
-                    msg += utils.buildChallengeList(Object.keys(challenges), challenges);
+                    msg += utils.buildChallengeList(Array.from(challenges.keys()), challenges);
                     message.reply(utils.errorMessageBuilder(msg));
-                    return Challenge.ERR_CHALLENGE_NOT_VALID;
+                    return ChallengeCommand.ERR_CHALLENGE_NOT_VALID;
                 }
             }
         } else {
-            const randomChallenge = challenges[utils.pickRandom(Object.keys(challenges))];
-            message.reply(`**${randomChallenge['name']}**: ${randomChallenge['desc']}`);
+            const randomChallenge = challenges.get(utils.pickRandom(Array.from(challenges.keys())));
+            message.reply(`**${randomChallenge!.name}**: ${randomChallenge!.desc}`);
             return 0;
         }
     };
 };
-module.exports = Challenge;
