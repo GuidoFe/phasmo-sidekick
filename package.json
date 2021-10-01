@@ -4,7 +4,6 @@
   "description": "Discord bot with a collection of Phasmophobia utilities",
   "main": "src/bot.js",
   "scripts": {
-    "test": "NODE_PATH=./src mocha",
     "start": "cd dist && node bot.js",
     "build": "cd src && tsc"
   },

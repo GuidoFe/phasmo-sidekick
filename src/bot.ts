@@ -1,7 +1,7 @@
 import 'module-alias/register';
 import {Client, Intents, ActivityOptions} from 'discord.js';
-import * as dotenv from "dotenv";
-dotenv.config({path: '../.env'});
+// import * as dotenv from "dotenv";
+// dotenv.config({path: '../.env'});
 import {DataManager, CommandManager, PrefixCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
