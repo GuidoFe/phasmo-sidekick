@@ -15,11 +15,15 @@ const commandManager = new CommandManager(dataManager, commandClasses);
 import webService = require('./serverListPage');
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
+
 const statusMessages: ActivityOptions[] = [
-    {name: 'with the light switches', type: 0},
-    {name: 'you through the window', type: 3},
-    {name: 'people screaming 👻', type: 2},
-    {name: 'basketball in the lobby', type: 0},
+    {name: 'basketball', type: 0},
+    {name: 'Ghostbusters', type: 3},
+    {name: 'Casper', type: 3},
+    {name: 'with the Ouija', type: 0},
+    {name: 'The Shining', type: 3},
+    {name: 'Phasmophobia', type: 0},
+    {name: '_NUM_SERVERS', type: 0}
 ];
 client.once('ready', () => {
     console.log('Ready!');
@@ -27,7 +31,10 @@ client.once('ready', () => {
     webService.runMonitorWebService();
     setInterval(()=>{
         const activity = utils.pickRandom(statusMessages);
-        client.user!.setActivity(activity.name || '', {type: activity.type});
+        if (activity.name == '_NUM_SERVERS'){
+            activity.name = `in ${client.guilds.cache.size} servers`;
+        }
+        client.user!.setActivity(activity);
     }, 60000);
 });
 client.login(process.env.TOKEN);
