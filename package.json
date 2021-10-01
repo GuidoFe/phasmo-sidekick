@@ -2,7 +2,7 @@
   "name": "phasmo-sidekick",
   "version": "1.0.0",
   "description": "Discord bot with a collection of Phasmophobia utilities",
-  "main": "src/bot.js",
+  "main": "dist/bot.js",
   "scripts": {
     "start": "cd dist && node bot.js",
     "build": "cd src && tsc"
