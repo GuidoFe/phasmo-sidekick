@@ -2,6 +2,7 @@ import Color = require('color');
 import {MessageEmbed, Message} from 'discord.js';
 import {exec} from 'child_process';
 import {Challenge} from '@modules';
+const axios = require('axios').default;
 type ColorType = `#$(string)`;
 export function formatArrayAsList(array:string[]):string {
     let msg = '';
@@ -67,10 +68,12 @@ export async function sh(cmd:string) {
 
 export async function sendLogMessage(message: string) {
     // WARNING: ' is replaced with a different unicode char
-    message = message.toString().replace('\'', 'ʹ');
-    sh(`telegram-send -g --format markdown '*Phasmo Helper*\n\n${message}'`)
-        .catch((_err) => {
-            console.error(message);
+    //message = message.toString().replace('\"', '\'\'');
+    axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`, {
+        chat_id: process.env.TELEGRAM_CHAT_ID,
+        text: `*Phasmo Helper*\n${message}`,
+        parse_mode: 'Markdown'})
+        .catch(function(error: Error) {
+            console.log(error);
         });
 }
-
