@@ -14,46 +14,18 @@ const commandClasses = new Map<string, typeof PrefixCommand>(Object.entries(comm
 const commandManager = new CommandManager(dataManager, commandClasses);
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
-<<<<<<< HEAD:src/bot.js
-const statusMessages = [
-    {message: 'basketball', type: 0},
-    {message: 'Ghostbusters', type: 3},
-    {message: 'Casper', type: 3},
-    {message: 'with the Ouija', type: 0},
-    {message: 'The Shining', type: 3},
-    {message: 'Phasmophobia', type: 0},
-    {message: () => {
-        return `in ${client.guilds.cache.size} servers`;
-    }, type: 0},
-=======
 const statusMessages: ActivityOptions[] = [
     {name: 'with the light switches', type: 0},
     {name: 'you through the window', type: 3},
     {name: 'people screaming 👻', type: 2},
     {name: 'basketball in the lobby', type: 0},
->>>>>>> ts-conv:src/bot.ts
 ];
-const updateActivity = function() {
-    activity = utils.pickRandom(statusMessages);
-    let msg = '';
-    if (typeof activity.message === 'function') {
-        msg = activity.message();
-    } else {
-        msg = activity.message;
-    }
-    client.user.setActivity(`${msg} | !ph`, {type: activity.type});
-};
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
-    updateActivity();
     setInterval(()=>{
-<<<<<<< HEAD:src/bot.js
-        updateActivity();
-=======
         const activity = utils.pickRandom(statusMessages);
         client.user!.setActivity(activity.name || '', {type: activity.type});
->>>>>>> ts-conv:src/bot.ts
     }, 60000);
 });
 client.login(process.env.TOKEN);
