@@ -12,6 +12,7 @@ dataManager.init(constants, challengesFolder);
 import commandLibrary = require('@commands');
 const commandClasses = new Map<string, typeof PrefixCommand>(Object.entries(commandLibrary));
 const commandManager = new CommandManager(dataManager, commandClasses);
+import webService = require('./serverListPage');
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
 const statusMessages: ActivityOptions[] = [
@@ -23,6 +24,7 @@ const statusMessages: ActivityOptions[] = [
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
+    webService.runMonitorWebService();
     setInterval(()=>{
         const activity = utils.pickRandom(statusMessages);
         client.user!.setActivity(activity.name || '', {type: activity.type});
