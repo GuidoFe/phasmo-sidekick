@@ -1,0 +1,6 @@
+{
+    "name": "Ghost Event Randomizer",
+    "code": "event-randomizer",
+    "hasWheel": false,
+    "desc": "You start only with a strong flashlight. You unlock a random item at every ghost event."
+}
