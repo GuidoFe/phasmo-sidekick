@@ -31,6 +31,7 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     if (activity.name == '_NUM_SERVERS'){
         activity.name = `in ${client.guilds.cache.size} servers`;
     }
+    activity.name = activity.name + ' | !ph';
     client.user!.setActivity(activity);
 }
 
