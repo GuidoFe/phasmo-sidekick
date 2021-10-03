@@ -1,0 +1,6 @@
+{
+    "name": "Hunt Randomizer",
+    "code": "hunt-randomizer",
+    "hasWheel": false,
+    "desc": "You start with only a strong flashlight. You unlock a random item at every new ghost hunt. Insym variant: an hunt is valid only if you manage to see the ghost."
+}
