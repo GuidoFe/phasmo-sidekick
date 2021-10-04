@@ -35,6 +35,7 @@ export class HelpCommand extends PrefixCommand {
                 this.embedFullHelpMessage.addField(command.commandUsage, command.shortDescription);
             };
         });
+        this.embedFullHelpMessage.addField('\u200B', '[Invite](https://discord.com/api/oauth2/authorize?client_id=887086717587320852&permissions=2048&scope=bot) ~ [Join Support Server](https://discord.gg/jDTzD2SaXP) ~ [Donate](https://ko-fi.com/guidoferri55063) ~ [Vote](https://top.gg/bot/887086717587320852/vote) ~ [Review](https://top.gg/bot/887086717587320852)', false);
     };
     execute(message: Message): number {
         const args = utils.getMessageArguments(message);
