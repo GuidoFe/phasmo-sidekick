@@ -43,5 +43,5 @@ export const constants: Constants = {
         ["Banshee", [2, 4, 6]],
         ["Yokai", [3, 4, 6]],
         ["Yurei", [4, 5, 6]]
-    ])
+    ]),
 };
