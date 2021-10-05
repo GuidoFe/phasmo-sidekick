@@ -6,7 +6,7 @@
   "scripts": {
     "start-bot": "cd dist && node bot.js",
     "start-list-page": "cd dist && node serverListPage.js",
-    "start": "npm run start-bot & npm run start-list-page",
+    "start": "npm run start-bot",
     "build": "cd src && tsc"
   },
   "repository": {
