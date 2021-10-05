@@ -27,11 +27,13 @@ const statusMessages: ActivityOptions[] = [
 
 function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     const activity = utils.pickRandom(statusMessages);
+    let line = '';
     if (activity.name == '_NUM_SERVERS'){
-        activity.name = `in ${client.guilds.cache.size} servers`;
+        line = `in ${client.guilds.cache.size} servers`;
+    } else {
+        line = activity.name!;
     }
-    activity.name = activity.name + ' | !ph';
-    client.user!.setActivity(activity);
+    client.user!.setActivity(`${line} | !ph`, {type: activity.type});
 }
 
 client.once('ready', () => {
