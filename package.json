@@ -4,7 +4,10 @@
   "description": "Discord bot with a collection of Phasmophobia utilities",
   "main": "dist/bot.js",
   "scripts": {
-    "start": "cd dist && node bot.js",
+    "start-bot": "cd dist && node bot.js",
+    "start-list-page": "cd dist && node serverListPage.js",
+    "start-dbots": "cd dist && node dbotsScript.js",
+    "start": "npm run start-bot & npm run start-list-page & npm run start-dbots",
     "build": "cd src && tsc"
   },
   "repository": {
@@ -23,6 +26,7 @@
     "ansi-regex": ">=6.0.1",
     "axios": "^0.22.0",
     "color": "^4.0.1",
+    "dbots": "^9.0.1",
     "discord-api-types": "^0.23.1",
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
