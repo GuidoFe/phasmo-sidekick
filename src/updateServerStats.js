@@ -1,6 +1,5 @@
 const axios = require("axios").default;
 
-const BOT_ID = '887086717587320852';
 const TOKEN_blist = 'zzmHD5wXQNPlgL8dmEai';
 const TOKEN_boats = 'CZKw0sPVQOKYMJDHP1YEOKASkCjdQlFmkEiQTTGPNWyPSNySvMYCuCL3NVI5jKu5xJPVIvPcVvQC3n6nunbiQTtwOyXR1VQykT5AFY71GSLWkRiF6Dm0BA8IMqM0BKIVv0i77UPwGLYtyMSbwRM2kjVMhfJ';
 const TOKEN_discordBotList = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoxLCJpZCI6Ijg4NzA4NjcxNzU4NzMyMDg1MiIsImlhdCI6MTYzMzQzODAyOX0.80cWNUl7I_7L1lMGn3gZSHB6ZyWhmEJXPMdDUjxBvuE';
@@ -53,7 +52,8 @@ function uploadStats(url, apiEndpoint, type, countName, serverCount, shardName, 
 module.exports = function updateServerStats(client) {
     const serverCount = client.guilds.cache.size;
     const shards = client.shard ? client.shard.count : 1;
-
+    const BOT_ID = client.application.id;
+    console.log(`BOT_ID: ${BOT_ID}`);
     // TODO: bladelist.gg
     uploadStats('blist.xyz', `https://blist.xyz/api/v2/bot/${BOT_ID}/stats`, 'PATCH', 'server_count', serverCount, 'shard_count', shards, TOKEN_blist);
     // TODO: discords.com (aka Bots For Discord)
