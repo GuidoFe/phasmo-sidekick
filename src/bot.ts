@@ -14,7 +14,7 @@ const commandClasses = new Map<string, typeof PrefixCommand>(Object.entries(comm
 const commandManager = new CommandManager(dataManager, commandClasses);
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
-
+import updateServerStats = require('./updateServerStats');
 const statusMessages: ActivityOptions[] = [
     {name: '_NUM_SERVERS', type: 0},
     {name: 'basketball', type: 0},
@@ -41,6 +41,8 @@ client.once('ready', () => {
     setInterval(()=>{
         updateActivity(client, statusMessages);
     }, 120000);
+    updateServerStats(client);
+    setInterval(() => {updateServerStats(client);}, 1800000);
 });
 client.login(process.env.TOKEN);
 client.on('messageCreate', async (message) => {
