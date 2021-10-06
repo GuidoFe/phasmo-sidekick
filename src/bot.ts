@@ -6,6 +6,8 @@ import {DataManager, CommandManager, PrefixCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
 import express = require('express');
+const ICON_SIZE = 64;
+import RateLimit = require('express-rate-limit');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
 import {constants} from '@constants';
 const dataManager = new DataManager();
