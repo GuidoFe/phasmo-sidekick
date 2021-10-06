@@ -64,7 +64,7 @@ module.exports = function updateServerStats(client) {
     uploadStats('discordExtremeList.xyz', `https://api.discordextremelist.xyz/v2/bot/${BOT_ID}/stats`, 'POST', 'guildCount', serverCount, 'shardCount', shards, TOKEN_discordExtremeList);
     // TODO: waiting verification uploadStats('bots.discordlabs.com...', `https://bots.discordlabs.org/v2/bot/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_discordLabs);
     // TODO; key is not generating. uploadStats('discordlistology.com', `https://discordlistology.com/api/v1/bots/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordListology);
-    // TODO: waiting for approval. uploadStats('discordServices.net', `https://api.discordservices.net/bot/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordServices);
+    uploadStats('discordServices.net', `https://api.discordservices.net/bot/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordServices);
     // TODO: waiting verification from disforge.com
     uploadStats('fatesList.xyz', `https://fateslist.xyz/api/bots/${BOT_ID}/stats`, 'POST', 'guild_count', serverCount, 'shard_count', shards, TOKEN_fatesList);
     // TODO: must be approved first. uploadStatsWithId('infinityBotList.com', `https://api.infinitybotlist.com/bots/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, 'botid', BOT_ID, TOKEN_infinityBotList);
