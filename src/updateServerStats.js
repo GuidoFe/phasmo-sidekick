@@ -7,7 +7,7 @@ const TOKEN_discordBotsgg = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOnRydW
 const TOKEN_discordExtremeList = 'DELAPI_e602e88874b28bab01b3d56f4c074d01-887086717587320852';
 const TOKEN_discordServices = 'DSPAeGDlmuNIvCNNlQO7tpNU3SlXzk7JhsSNpMF8CtdMmom2bBr7';
 const TOKEN_fatesList = 'BktMoXB9cJuTNul8zr0f31zu97EtCuHJE4yhb3kkcCd11jpZ5KgB96e8LnCbaw0j5CpgBGHQbXvCfHWSjB56ZCAa3Uc05yBlfN8ABFEkToXmW7TOLArhBW67ezp5nVJUitFW';
-const TOKEN_infinityBotList = '6sVzMLrXlR3rdHOPMZEgd7grkZBHpL3CLKuHo5SnqzcBo3SPIDLY8fJSEXkfcbIm5DA04KEkipehd6UtWF8G2GcDfOPfOxF54bbG';
+const TOKEN_infinityBotList = 'CZ6BAAklAvNltYmkwdguexeZRhTjy30EXKIU1Pt5weuEbySGEhuphiR4I3NrlXmsFZJztdpC1FnH66wx27QXuT9FaqLeG49oZnFq';
 const TOKEN_botgg = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzA4NjcxNzU4NzMyMDg1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNjMzNDIyOTg1fQ.6w6JMZyfHY5hlFwlWz7lTU4pkaiOYMVdYe4rppAALwM';
 const TOKEN_voidBots = 'VOID_phluRBzsieNizfXLhXvz2XMLiC0i7nHHmqCsqVXyzybg80iy';
 const TOKEN_discordLabs = 'discordlabs.org-yIzi7ua5QEtcyCRQwOW9';
@@ -31,6 +31,7 @@ function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shard
     if (idName && id) {
         body[idName] = id;
     }
+    console.log(body);
     f(apiEndpoint, body, {
         headers: {
             Authorization: token,
@@ -67,7 +68,7 @@ module.exports = function updateServerStats(client) {
     uploadStats('discordServices.net', `https://api.discordservices.net/bot/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordServices);
     // TODO: waiting verification from disforge.com
     uploadStats('fatesList.xyz', `https://fateslist.xyz/api/bots/${BOT_ID}/stats`, 'POST', 'guild_count', serverCount, 'shard_count', shards, TOKEN_fatesList);
-    uploadStatsWithId('infinityBotList.com', `https://api.infinitybotlist.com/bots/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, 'botid', BOT_ID, TOKEN_infinityBotList);
+    // uploadStats('infinityBotList.com', `https://api.infinitybots.xyz/bot/${BOT_ID}`, 'POST', 'servers', serverCount, null, null, TOKEN_infinityBotList);
     uploadStats('top.gg', `https://top.gg/api/bots/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, null, null, TOKEN_botgg);
     uploadStats('voidBots.net', `https://api.voidbots.net/bot/stats/${BOT_ID}`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_voidBots);
     // TODO: wonderBotList.com: where API?
