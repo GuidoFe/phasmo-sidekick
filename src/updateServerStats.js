@@ -10,7 +10,7 @@ const TOKEN_fatesList = 'BktMoXB9cJuTNul8zr0f31zu97EtCuHJE4yhb3kkcCd11jpZ5KgB96e
 const TOKEN_infinityBotList = '6sVzMLrXlR3rdHOPMZEgd7grkZBHpL3CLKuHo5SnqzcBo3SPIDLY8fJSEXkfcbIm5DA04KEkipehd6UtWF8G2GcDfOPfOxF54bbG';
 const TOKEN_botgg = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NzA4NjcxNzU4NzMyMDg1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNjMzNDIyOTg1fQ.6w6JMZyfHY5hlFwlWz7lTU4pkaiOYMVdYe4rppAALwM';
 const TOKEN_voidBots = 'VOID_phluRBzsieNizfXLhXvz2XMLiC0i7nHHmqCsqVXyzybg80iy';
-// const TOKEN_discordListology = '';
+const TOKEN_discordLabs = 'discordlabs.org-yIzi7ua5QEtcyCRQwOW9';
 
 function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shardName, shards, idName, id, token) {
     console.log(`Updating ${url}...`);
