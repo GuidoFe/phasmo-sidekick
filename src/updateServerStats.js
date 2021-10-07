@@ -67,7 +67,7 @@ module.exports = function updateServerStats(client) {
     uploadStats('discordServices.net', `https://api.discordservices.net/bot/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordServices);
     // TODO: waiting verification from disforge.com
     uploadStats('fatesList.xyz', `https://fateslist.xyz/api/bots/${BOT_ID}/stats`, 'POST', 'guild_count', serverCount, 'shard_count', shards, TOKEN_fatesList);
-    // TODO: must be approved first. uploadStatsWithId('infinityBotList.com', `https://api.infinitybotlist.com/bots/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, 'botid', BOT_ID, TOKEN_infinityBotList);
+    uploadStatsWithId('infinityBotList.com', `https://api.infinitybotlist.com/bots/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, 'botid', BOT_ID, TOKEN_infinityBotList);
     uploadStats('top.gg', `https://top.gg/api/bots/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, null, null, TOKEN_botgg);
     uploadStats('voidBots.net', `https://api.voidbots.net/bot/stats/${BOT_ID}`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_voidBots);
     // TODO: wonderBotList.com: where API?
