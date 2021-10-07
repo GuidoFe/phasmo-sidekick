@@ -62,7 +62,7 @@ module.exports = function updateServerStats(client) {
     uploadStats('discordBotList.com', `https://discordbotlist.com/api/v1/bots/${BOT_ID}/stats`, 'POST', 'guilds', serverCount, null, null, TOKEN_discordBotList);
     uploadStats('discord.bots.gg', `https://discord.bots.gg/api/v1/bots/${BOT_ID}/stats`, 'POST', 'guildCount', serverCount, 'shardCount', shards, TOKEN_discordBotsgg);
     uploadStats('discordExtremeList.xyz', `https://api.discordextremelist.xyz/v2/bot/${BOT_ID}/stats`, 'POST', 'guildCount', serverCount, 'shardCount', shards, TOKEN_discordExtremeList);
-    // TODO: waiting verification uploadStats('bots.discordlabs.com...', `https://bots.discordlabs.org/v2/bot/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_discordLabs);
+    uploadStats('bots.discordlabs.com...', `https://bots.discordlabs.org/v2/bot/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_discordLabs);
     // TODO; key is not generating. uploadStats('discordlistology.com', `https://discordlistology.com/api/v1/bots/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordListology);
     uploadStats('discordServices.net', `https://api.discordservices.net/bot/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordServices);
     // TODO: waiting verification from disforge.com
