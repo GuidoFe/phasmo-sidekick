@@ -31,18 +31,17 @@ function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shard
     if (idName && id) {
         body[idName] = id;
     }
-    console.log(body);
     f(apiEndpoint, body, {
         headers: {
             Authorization: token,
         }
     }).then((data) => {
         // Success
-        console.log(`${url}: ${data.status} ${data.statusText}`, data.data);
+        console.log(`${url}: ${data.status ? data.status : 'no_status_code'} ${data.statusText ? data.statusText : 'no_status'}`, data.data ? data.data : 'no_data');
         return data;
     }).catch((data) => {
         // Failure
-        console.log(`${url}: ${data.response.status} ${data.response.statusText}`, data.response.data);
+        console.log(`${url}: ${data.response.status ? data.response.status : 'no_status_code'} ${data.response.statusText ? data.response.statusText : 'no_status'}`, data.response.data ? data.response.data : 'no_data');
         return data;
     });
 }
@@ -68,7 +67,7 @@ module.exports = function updateServerStats(client) {
     uploadStats('discordServices.net', `https://api.discordservices.net/bot/${BOT_ID}/stats`, 'POST', 'servers', serverCount, 'shards', shards, TOKEN_discordServices);
     // TODO: waiting verification from disforge.com
     uploadStats('fatesList.xyz', `https://fateslist.xyz/api/bots/${BOT_ID}/stats`, 'POST', 'guild_count', serverCount, 'shard_count', shards, TOKEN_fatesList);
-    // uploadStats('infinityBotList.com', `https://api.infinitybots.xyz/bot/${BOT_ID}`, 'POST', 'servers', serverCount, null, null, TOKEN_infinityBotList);
+    uploadStats('infinityBotList.com', `https://api.infinitybots.com/bot/${BOT_ID}`, 'POST', 'servers', serverCount, null, null, TOKEN_infinityBotList);
     uploadStats('top.gg', `https://top.gg/api/bots/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, null, null, TOKEN_botgg);
     uploadStats('voidBots.net', `https://api.voidbots.net/bot/stats/${BOT_ID}`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_voidBots);
     // TODO: wonderBotList.com: where API?
