@@ -41,7 +41,7 @@ function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shard
         return data;
     }).catch((data) => {
         // Failure
-        console.log(`${url}: ${data.response.status ? data.response.status : 'no_status_code'} ${data.response.statusText ? data.response.statusText : 'no_status'}`, data.response.data ? data.response.data : 'no_data');
+        console.log(`${url}: ${data.response?.status ? data.response.status : 'no_status_code'} ${data.response?.statusText ? data.response.statusText : 'no_status'}`, data.response?.data ? data.response.data : 'no_data');
         return data;
     });
 }
