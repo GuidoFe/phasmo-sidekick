@@ -31,15 +31,10 @@ export class CommandManager {
         try {
             if (!message.content.startsWith(this.dataManager.constants.prefix)) return;
             const args = utils.getMessageArguments(message);
-            if (args.length < 2) {
-                this.commands.get('help')?.execute(message);
-                return 0;
-            };
-            if (this.commands.has(args[1])) {
+            if (args.length > 1 && this.commands.has(args[1])) {
                 const result = this.run(args[1], message);
                 return result;
             } else {
-                message.reply(utils.errorMessageBuilder('Error: command not valid'));
                 return 1;
             };
         } catch (error) {
