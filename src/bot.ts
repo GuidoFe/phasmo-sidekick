@@ -95,6 +95,8 @@ client.on('messageCreate', async (message) => {
     // Stop if message is received in DMs
     if (!message.guild) return;
     // if (message.guildId != '527614443581079583') return;
+    // Check if author is a bot
+    if (message.author?.bot) return;
     commandManager.parseMessage(message);
 });
 client.on('guildCreate', (guild) => {
