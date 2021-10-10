@@ -1,6 +1,7 @@
 import {PrefixCommand, DataManager} from '@modules';
 import utils = require('@utils');
 import {Message, MessageEmbed} from 'discord.js';
+type ColorType = `#$(string)`;
 
 interface HelpElement {
     shortDescription: string;
@@ -10,6 +11,7 @@ interface HelpElement {
 
 export class HelpCommand extends PrefixCommand {
     static ERR_COMMAND_NOT_VALID = 1;
+    embedColor = '#8766ff' as ColorType;
     prefix: string;
     name = 'help';
     embedFullHelpMessage: MessageEmbed;
@@ -36,6 +38,7 @@ export class HelpCommand extends PrefixCommand {
             };
         });
         this.embedFullHelpMessage.addField('\u200B', '[Invite](https://discord.com/api/oauth2/authorize?client_id=887086717587320852&permissions=2048&scope=bot) ~ [Support](https://discord.gg/jDTzD2SaXP) ~ [Donate](https://ko-fi.com/guidoferri55063) ~ [Vote](https://top.gg/bot/887086717587320852/vote) ~ [Review](https://top.gg/bot/887086717587320852)', false);
+        this.embedFullHelpMessage.setColor(this.embedColor);
     };
     execute(message: Message): number {
         const args = utils.getMessageArguments(message);
@@ -50,6 +53,7 @@ export class HelpCommand extends PrefixCommand {
             embed.setTitle(`Help for ${args[2]}`);
             const seekedCommand = this.commandList.get(args[2]);
             embed.addField(seekedCommand!.commandUsage, seekedCommand!.longDescription);
+            embed.setColor(this.embedColor);
             message.reply({embeds: [embed]});
         }
         return 0;

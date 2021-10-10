@@ -70,6 +70,7 @@ module.exports = function updateServerStats(client) {
     uploadStats('infinityBotList.com', `https://api.infinitybots.com/bot/${BOT_ID}`, 'POST', 'servers', serverCount, null, null, TOKEN_infinityBotList);
     uploadStats('top.gg', `https://top.gg/api/bots/${BOT_ID}/stats`, 'POST', 'server_count', serverCount, null, null, TOKEN_botgg);
     uploadStats('voidBots.net', `https://api.voidbots.net/bot/stats/${BOT_ID}`, 'POST', 'server_count', serverCount, 'shard_count', shards, TOKEN_voidBots);
+    // TODO: doesn't work uploadStats('botLists.com', `https://api.botlists.com/bot/${BOT_ID}`, 'POST', 'guilds', serverCount, 'shards', shards, TOKEN_botLists);
     // TODO: wonderBotList.com: where API?
     // TODO: yabl.xyz: ?????
 };
