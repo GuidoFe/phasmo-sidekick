@@ -4,11 +4,9 @@ import {Message} from 'discord.js';
 
 export class ChallengeCommand extends PrefixCommand {
     static ERR_CHALLENGE_NOT_VALID = 1;
-    prefix:string; 
     name = 'challenge';
     constructor(dataManager: DataManager) {
         super(dataManager);
-        this.prefix = dataManager.constants.prefix;
         this.commandUsage = `⚔️ ${this.prefix} challenge`;
         this.shortDescription = 'Pick a random challenge created by the Phasmophobia community. Add `list` at the end to list all the possible challenges.';
         this.longDescription = `${this.shortDescription} Get a challenge description with ${this.prefix} challenge \`challenge_name\``;

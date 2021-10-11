@@ -4,13 +4,11 @@ import {Message} from 'discord.js';
 
 export class CluesCommand extends PrefixCommand {
     static ERR_CLUE_NOT_VALID = 1;
-    prefix: string;
     name = 'clues';
     constants:Constants;
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.constants = dataManager.constants;
-        this.prefix = dataManager.constants.prefix;
         this.commandUsage = `🔎 ${this.prefix} clues \`clues_list\``;
         this.shortDescription = `Show which ghosts are possible with those clues and which evidence is lacking.`;
         this.longDescription = `${this.shortDescription} Clues:\n    - \`emf\` or \`emf5\`\n    - \`book\` or \`writing\` or \`ghostwriting\`\n    - \`fingerprints\` or \`fingers\`\n    - \`spirit\` or \`spiritbox\`\n    - \`orbs\` or \`ghostorbs\`\n    - \`freezing\` or \`temps\`\n    - \`dots\`\n\nExample: \`${this.prefix} clues emf orbs\``;

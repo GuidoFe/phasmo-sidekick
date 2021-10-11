@@ -3,12 +3,10 @@ import {Message} from 'discord.js';
 import utils = require('@utils');
 export class MapCommand extends PrefixCommand {
     static ERR_MAP_NOT_VALID = 1;
-    prefix: string;
     name = 'map';
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.dataManager = dataManager;
-        this.prefix = dataManager.constants.prefix;
         const symbol = '🗺️';
         this.commandUsage = `${symbol} ${this.prefix} map \`available_maps\``;
         this.shortDescription = `Choose a random map between those indicated.`;

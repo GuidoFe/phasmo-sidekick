@@ -3,12 +3,10 @@ import utils = require('@utils');
 import {MessageEmbed, Message} from 'discord.js';
 export class SpinCommand extends PrefixCommand {
     static ERR_CHALLENGE_NOT_VALID = 1;
-    prefix: string;
     name = 'spin';
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.dataManager = dataManager;
-        this.prefix = dataManager.constants.prefix;
         this.commandUsage = `🌀 ${this.prefix} spin \`challenge_name\``;
         this.shortDescription = `Spin the wheel of the challenge \`challenge_name\`, if it has one.`;
         this.longDescription = this.shortDescription;

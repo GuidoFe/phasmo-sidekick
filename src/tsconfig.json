@@ -15,6 +15,7 @@
         "paths": {
             "@modules": ["modules"],
             "@commands": ["commands"],
+            "@adminCommands": ["admin_commands"],
             "@challenges/*": ["../challenges/*"],
             "@utils": ["utils.js"],
             "@constants": ["./constants"],

@@ -1,6 +1,6 @@
-import {PrefixCommand, DataManager} from '@modules';
+import {AdminCommand, DataManager} from '@modules';
 import utils = require('@utils');
-import {Message, MessageEmbed} from 'discord.js';
+import {Message, MessageEmbed, Client} from 'discord.js';
 type ColorType = `#$(string)`;
 
 interface HelpElement {
@@ -9,40 +9,39 @@ interface HelpElement {
     commandUsage: string;
 };
 
-export class HelpCommand extends PrefixCommand {
+export class AdminHelp extends AdminCommand {
     static ERR_COMMAND_NOT_VALID = 1;
     embedColor = '#8766ff' as ColorType;
-    name = 'help';
+    name = 'adminHelp';
     embedFullHelpMessage: MessageEmbed;
     commandList: Map<string, HelpElement>
-    constructor(dataManager: DataManager) {
-        super(dataManager);
-        this.commandUsage = `❓ ${this.prefix} help \`command\``;
-        this.shortDescription = 'General help message, or help about `command` if you specify it.';
+    constructor(dataManager: DataManager, client: Client) {
+        super(dataManager, client);
+        this.commandUsage = `${this.prefix} adminHelp \`command\``;
+        this.shortDescription = 'Help message for admin commands';
         this.longDescription = this.shortDescription;
         this.embedFullHelpMessage = new MessageEmbed().addField(this.commandUsage, this.shortDescription);
-        this.embedFullHelpMessage.setTitle('Commands');
+        this.embedFullHelpMessage.setTitle('Admin Commands');
         this.commandList = new Map();
     }
-    init(commands: Map<string, PrefixCommand>) { 
-        commands.forEach((command: PrefixCommand, commandName: string) => {
+    init(commands: Map<string, AdminCommand>) {
+        commands.forEach((command: AdminCommand, commandName: string) => {
             this.commandList.set(commandName, {
                 shortDescription: command.shortDescription,
                 longDescription: command.longDescription,
                 commandUsage: command.commandUsage,
             } as HelpElement);
-            if (commandName != 'help') {
+            if (commandName != 'adminHelp') {
                 this.embedFullHelpMessage.addField(command.commandUsage, command.shortDescription);
             };
         });
-        this.embedFullHelpMessage.addField('\u200B', '[Invite](https://discord.com/api/oauth2/authorize?client_id=887086717587320852&permissions=2048&scope=bot) ~ [Support](https://discord.gg/jDTzD2SaXP) ~ [Donate](https://ko-fi.com/guidoferri55063) ~ [Vote](https://top.gg/bot/887086717587320852/vote) ~ [Review](https://top.gg/bot/887086717587320852)', false);
         this.embedFullHelpMessage.setColor(this.embedColor);
     };
     execute(message: Message): number {
         const args = utils.getMessageArguments(message);
         if (args.length > 2 && !(this.commandList.has(args[2]))) {
             message.reply(utils.errorMessageBuilder(`${args[2]} is not a valid command.`));
-            return HelpCommand.ERR_COMMAND_NOT_VALID;
+            return AdminHelp.ERR_COMMAND_NOT_VALID;
         }
         if (args.length <= 2) {
             message.reply({embeds: [this.embedFullHelpMessage]});
@@ -57,4 +56,3 @@ export class HelpCommand extends PrefixCommand {
         return 0;
     };
 }
-

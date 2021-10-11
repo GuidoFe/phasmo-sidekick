@@ -77,3 +77,15 @@ export async function sendLogMessage(message: string) {
             console.log(error);
         });
 }
+
+export function msToTime(duration: number): String {
+    const milliseconds = Math.floor((duration % 1000) / 100);
+    const seconds = Math.floor((duration / 1000) % 60);
+    const minutes = Math.floor((duration / (1000 * 60)) % 60);
+    const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    const hoursStr = (hours < 10) ? "0" + hours : hours.toString();
+    const minutesStr = (minutes < 10) ? "0" + minutes : minutes.toString();
+    const secondsStr = (seconds < 10) ? "0" + seconds : seconds.toString();
+    return hoursStr + ":" + minutesStr + ":" + secondsStr + "." + milliseconds;
+}

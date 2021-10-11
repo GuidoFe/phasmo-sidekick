@@ -7,8 +7,10 @@ export class PrefixCommand {
     shortDescription = '';
     longDescription = '';
     dataManager: DataManager;
+    prefix: string;
     constructor(dataManager: DataManager) {
         this.dataManager = dataManager;
+        this.prefix = dataManager.constants.prefix;
     }
     execute(message: Message): number{
         return 1;

@@ -4,11 +4,9 @@ import {Message} from 'discord.js';
 
 export class PickCommand extends PrefixCommand {
     static ERR_NO_ARGS = 1;
-    prefix: string;
     name = 'pick';
     constructor(dataManager: DataManager) {
         super(dataManager);
-        this.prefix = dataManager.constants.prefix;
         this.commandUsage = `🎲 ${this.prefix} pick \`A B C ...\``;
         this.shortDescription = `Pick a random element from the specified list. Useful when deciding who should talk with the ghost alone.`;
         this.longDescription = `${this.shortDescription} Example: \`${this.prefix} pick Georgina Darlene Martin\``;
