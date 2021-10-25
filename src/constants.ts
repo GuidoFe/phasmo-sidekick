@@ -12,7 +12,8 @@ export const constants: Constants = {
         ["b", "Bleasdale"],
         ["h", "Highschool"],
         ["p", "Prison"],
-        ["a", "Asylum"]
+        ["a", "Asylum"],
+        ["c", "Campfire"]
     ]),
 
     commonClueNames: new Map<string, number>([
@@ -30,9 +31,12 @@ export const constants: Constants = {
         ["Myling", [0, 1, 2]],
         ["Spirit", [0, 1, 3]],
         ["Shade", [0, 1, 5]],
+        ["Obake", [0, 2, 4]],
         ["Jinn", [0, 2, 5]],
         ["Goryo", [0, 2, 6]],
+        ["The Twins", [0, 3, 5]],
         ["Wraith", [0, 3, 6]],
+        ["Raiju", [0, 4, 6]],
         ["Oni", [0, 5, 6]],
         ["Poltergeist", [1, 2, 4]],
         ["Demon", [1, 2, 5]],
@@ -41,7 +45,8 @@ export const constants: Constants = {
         ["Phantom", [2, 3, 6]],
         ["Hantu", [2, 4, 5]],
         ["Banshee", [2, 4, 6]],
+        ["Onryo", [3, 4, 5]],
         ["Yokai", [3, 4, 6]],
-        ["Yurei", [4, 5, 6]]
+        ["Yurei", [4, 5, 6]],
     ]),
 };
