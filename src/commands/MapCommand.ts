@@ -10,7 +10,7 @@ export class MapCommand extends PrefixCommand {
         const symbol = '🗺️';
         this.commandUsage = `${symbol} ${this.prefix} map \`available_maps\``;
         this.shortDescription = `Choose a random map between those indicated.`;
-        this.longDescription = `${this.shortDescription} If \`available_maps\` is empty, it will consider every map. \`available_maps\` is a sequence of these letters separated by spaces:\n    - t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highschool\n    - p: Prison\n    - a: Asylum`;
+        this.longDescription = `${this.shortDescription} If \`available_maps\` is empty, it will consider every map. \`available_maps\` is a sequence of these letters separated by spaces:\n    - t: Tanglewood\n    - e: Edgefield\n    - w: Willow\n    - r: Ridgeview\n    - g: Grafton\n    - b: Bleasdale\n    - h: Brownstone Highschool\n    - p: Prison\n    - a: Asylum\n    - c: Campfire`;
     };
     pickMap(mapsInitialsPool: string[] | undefined = undefined) : string {
         if (mapsInitialsPool != null && mapsInitialsPool.length > 0) {
