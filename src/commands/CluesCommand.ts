@@ -25,13 +25,19 @@ export class CluesCommand extends PrefixCommand {
         return ghostPool;
     };
     execute(message: Message): number {
-        const args = utils.getMessageArguments(message);
+        var args = utils.getMessageArguments(message);
         let cluesList = new Array<string>();
+        if (args.length == 4 && args[2].toLowerCase() == "the" && args[3].toLowerCase() == "twins" || args.length == 3 && args[2].toLowerCase() == "twins") {
+            args = ["!ph", "clues", "The Twins"]
+        }
         if (args.length > 2) {
             cluesList = args.slice(2);
         }
         if (args.length == 3) {
-            const ghostName = args[2].charAt(0).toUpperCase() + args[2].slice(1).toLowerCase();
+            var ghostName = args[2]
+            if (args[2] != "The Twins") {
+                ghostName = args[2].charAt(0).toUpperCase() + args[2].slice(1).toLowerCase();
+            }
             if (this.constants.ghosts.has(ghostName)) {
                 const self = this;
                 const clues = this.constants.ghosts.get(ghostName)!.map(function (x: number) {
@@ -63,8 +69,6 @@ export class CluesCommand extends PrefixCommand {
         } else {
             const availableClues = cluesList.map((x) => {
                 const val = this.constants.commonClueNames.get(x);
-                console.log(`x: ${x}\nval: ${val}`);
-                console.log(this.constants.commonClueNames);
                 if (val != null) {
                     return val;
                 } else {
