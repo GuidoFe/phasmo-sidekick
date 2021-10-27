@@ -28,6 +28,11 @@ const statusMessages: ActivityOptions[] = [
     {name: 'with the Ouija', type: 0},
     {name: 'The Shining', type: 3},
     {name: 'Phasmophobia', type: 0},
+    {name: 'the guitar', type: 0},
+    {name: 'Nightmare mode', type: 0},
+    {name: 'the bonfire', type: 3},
+    {name: 'cornhole', type: 0},
+    {name: 'ring toss', type: 0},
 ];
 
 function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
