@@ -62,6 +62,6 @@ client.on('messageCreate', async (message) => {
     if (message.author?.bot) return;
     commandManager.parseMessage(message);
 });
-client.on('guildCreate', (guild) => {
-    utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
-});
+//client.on('guildCreate', (guild) => {
+//    utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
+//});
