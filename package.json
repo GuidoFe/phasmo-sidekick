@@ -4,9 +4,7 @@
   "description": "Discord bot with a collection of Phasmophobia utilities",
   "main": "dist/bot.js",
   "scripts": {
-    "start-bot": "cd dist && node bot.js",
-    "start-list-page": "cd dist && node serverListPage.js",
-    "start": "npm run start-bot",
+    "start": "cd dist && node bot.js",
     "build": "cd src && tsc"
   },
   "repository": {
