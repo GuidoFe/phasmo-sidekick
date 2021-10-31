@@ -5,9 +5,6 @@ import {Client, Intents, ActivityOptions} from 'discord.js';
 import {DataManager, CommandManager, PrefixCommand, AdminCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
-import express = require('express');
-const ICON_SIZE = 64;
-import RateLimit = require('express-rate-limit');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
 import {constants} from '@constants';
 const dataManager = new DataManager();
@@ -55,47 +52,6 @@ client.once('ready', () => {
     }, 120000);
     updateServerStats(client);
     setInterval(() => {updateServerStats(client);}, 1800000);
-
-    const app = express();
-    const limiter = RateLimit({
-          windowMs: 15*60*1000, // 15 minutes
-            max: 100, // limit each IP to 100 requests per windowMs
-    });
-    app.use(limiter);
-    app.get('/serverlist', async (_request, response)=>{
-        let content = '';
-        client.guilds.cache.forEach((guild, _key, _map) => {
-            content += '<tr>\n';
-            content += `<td><img src="${guild.iconURL({dynamic: true, size: ICON_SIZE})}" height=${ICON_SIZE} width=${ICON_SIZE}></img></td>\n`;
-            content += `<td>${guild.name}</td>\n`;
-            content += `<td>${guild.memberCount}</td>\n`;
-            content += `<td>${(guild.description == undefined) ? "" : guild.description}</td>\n`;
-            content += '</tr>\n';
-        });
-        const page = `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8"/>
-</head>
-<body style="background-color:#2e3440; color:#d8dee9">
-<p>
-Number of servers: ${client.guilds.cache.size}
-</p>
-<table>
-<tr>
-<th>Icon</th>
-<th>Name</th>
-<th>Member Count</th>
-<th>Description</th>
-</tr>
-${content}
-</table>
-</body>
-</html>`;
-        response.send(page);
-        console.log(`\n\nCurrently in ${client.guilds.cache.size} servers.`);
-    });
-    app.listen(process.env.PORT, () => console.log(`App available on port ${process.env.PORT}`));
 });
 client.login(process.env.TOKEN);
 client.on('messageCreate', async (message) => {
