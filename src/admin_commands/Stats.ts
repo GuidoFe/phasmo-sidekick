@@ -11,7 +11,10 @@ export class StatsCommand extends AdminCommand {
         this.longDescription = this.shortDescription;
     };
     execute(message: Message) {
-        message.reply(`Guilds: ${this.client.guilds.cache.size}\nReady at: ${this.client.readyAt}\nUptime: ${utils.msToTime(this.client.uptime ? this.client.uptime : 0)}`);
+        var totalUsers = 0;
+        const totalServers = this.client.guilds.cache.size
+        this.client.guilds.cache.forEach((guild) => totalUsers += guild.memberCount);
+        message.reply(`Guilds: ${totalServers}\nTotal users: ${totalUsers}\nAverage size of servers: ${(totalUsers / totalServers).toFixed(2)} users\nReady at: ${this.client.readyAt}\nUptime: ${utils.msToTime(this.client.uptime ? this.client.uptime : 0)}`);
         return 0;
     };
 };
