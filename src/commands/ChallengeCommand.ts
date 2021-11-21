@@ -1,39 +1,47 @@
-import {PrefixCommand, DataManager} from '@modules';
+import {SlashCommandBuilder} from '@discordjs/builders';
+import {DataManager, SlashCommand} from '@modules';
 import  utils = require('@utils');
-import {Message} from 'discord.js';
+import {CommandInteraction} from 'discord.js';
 
-export class ChallengeCommand extends PrefixCommand {
+export class ChallengeCommand extends SlashCommand {
     static ERR_CHALLENGE_NOT_VALID = 1;
     name = 'challenge';
     constructor(dataManager: DataManager) {
         super(dataManager);
-        this.commandUsage = `⚔️ ${this.prefix} challenge`;
-        this.shortDescription = 'Pick a random challenge created by the Phasmophobia community. Add `list` at the end to list all the possible challenges.';
+        this.shortDescription = 'Pick a random challenge created by the Phasmophobia community.';
         this.longDescription = `${this.shortDescription} Get a challenge description with ${this.prefix} challenge \`challenge_name\``;
+        let challenges:[string, string][] = []
+        this.dataManager.challengesList.forEach((value, _key)=> {
+            challenges.push([value.name, value.code])
+        });
+        this.command = new SlashCommandBuilder()
+            .setName(this.name)
+            .setDescription(this.shortDescription)
+        this.command.addSubcommand((subCommand) => subCommand
+                                   .setName("random")
+                                   .setDescription("Pick a random challenge"))
+        this.command.addSubcommand((subCommand) => subCommand
+                                   .setName("info")
+                                   .setDescription("Get info about a challenge")
+                                   .addStringOption(option => 
+                                          option
+                                           .setName("name")
+                                           .setDescription("Get info about a specific challenge")
+                                           .setRequired(true)
+                                           .addChoices(challenges)
+                                   ));
     }
-    execute(message:Message): number {
+    execute = async (interaction: CommandInteraction) => {
         const challenges = this.dataManager.challengesList;
-        const args = utils.getMessageArguments(message);
-        if (args.length > 2) {
-            if (args[2] == 'list') {
-                message.reply(`For more info about a particular challenge, use the command \`${this.prefix} challenge CODE\`\n${utils.buildChallengeList(Array.from(challenges.keys()), challenges)}`);
-                return 0;
-            } else {
-                const pickedChallenge = challenges.get(args[2]);
-                if (pickedChallenge != null) {
-                    message.reply(`**${pickedChallenge['name']}**: ${pickedChallenge['desc']}`);
-                    return 0;
-                } else {
-                    let msg = `${args[2]} is not a valid challenge.\nPossible challenges:\n`;
-                    msg += utils.buildChallengeList(Array.from(challenges.keys()), challenges);
-                    message.reply(utils.errorMessageBuilder(msg));
-                    return ChallengeCommand.ERR_CHALLENGE_NOT_VALID;
-                }
-            }
-        } else {
+        if (interaction.options.getSubcommand() === "random") {
             const randomChallenge = challenges.get(utils.pickRandom(Array.from(challenges.keys())));
-            message.reply(`**${randomChallenge!.name}**: ${randomChallenge!.desc}`);
-            return 0;
+            if (randomChallenge)
+                await interaction.reply(`**${randomChallenge.name}**: ${randomChallenge.desc}`)
+        } else if (interaction.options.getSubcommand() === "info") {
+            const challengeName = interaction.options.getString("name", true)
+            const challenge = challenges.get(challengeName)
+            if (challenge)
+                await interaction.reply(`**${challenge.name}**: ${challenge.desc}`)
         }
     };
 };

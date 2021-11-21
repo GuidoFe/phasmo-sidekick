@@ -2,7 +2,7 @@ import 'module-alias/register';
 import {Client, Intents, ActivityOptions} from 'discord.js';
 // import * as dotenv from "dotenv";
 // dotenv.config({path: '../.env'});
-import {DataManager, CommandManager, PrefixCommand, AdminCommand} from '@modules';
+import {DataManager, CommandManager, SlashCommand, AdminCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
@@ -11,7 +11,7 @@ const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 import commandLibrary = require('@commands');
 import adminCommandLibrary = require('@adminCommands');
-const commandClasses = new Map<string, typeof PrefixCommand>(Object.entries(commandLibrary));
+const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary));
 const adminCommandClasses = new Map<string, typeof AdminCommand>(Object.entries(adminCommandLibrary));
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
@@ -54,13 +54,10 @@ client.once('ready', () => {
     setInterval(() => {updateServerStats(client);}, 1800000);
 });
 client.login(process.env.TOKEN);
-client.on('messageCreate', async (message) => {
-    // Stop if message is received in DMs
-    if (!message.guild) return;
-    // if (message.guildId != '527614443581079583') return;
-    // Check if author is a bot
-    if (message.author?.bot) return;
-    commandManager.parseMessage(message);
+client.on('interactionCreate', async (interaction) => {
+    if (!interaction.isCommand()) return;
+    if(interaction.user.bot) return;
+    commandManager.run(interaction.commandName, interaction)
 });
 //client.on('guildCreate', (guild) => {
 //    utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
