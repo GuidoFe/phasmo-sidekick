@@ -17,7 +17,7 @@ export class HelpCommand extends SlashCommand {
         const embed = new MessageEmbed().setTitle("Help")
         embed.addField('❓  `/help`', 'This help message')
         embed.addField("🔦 `/random item`", "Pick a random item")
-        embed.addField("🗺️ `/random map LIST",
+        embed.addField("🗺️ `/random map LIST`",
                        "Choose a random map between those indicated. If List is empty, it will consider every map")
         embed.addField("🎲 `/random hero Alice Beth Charlie`", "Pick a random player. Useful when you have to decide who must talk alone with the ghost.")
         embed.addField("🌀 `/spin CHALLENGE_NAME`", "Spin the wheel of a particular challenge, if it has one.")
