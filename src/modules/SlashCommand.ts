@@ -7,10 +7,8 @@ export class SlashCommand {
     shortDescription = '';
     longDescription = '';
     dataManager: DataManager;
-    prefix: string;
     constructor(dataManager: DataManager) {
         this.dataManager = dataManager;
-        this.prefix = dataManager.constants.prefix;
     }
     execute: (interaction: Interaction) => Promise<void>;
     command: SlashCommandBuilder;

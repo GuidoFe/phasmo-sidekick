@@ -24,8 +24,9 @@ export class HelpCommand extends SlashCommand {
         embed.addField("⚔️ /challenge", "Pick a random challenge. Get a list of challenges and their description with `/challenge info CHALLENGE_NAME")
         embed.addField("🔎 /clues CLUES", "Show which ghosts are possible with those clues and which evidence is lacking.")
         embed.addField("🎫 /invite", "Invite the bot or get an invite to the Support Server");
-        const inviteButton = new MessageButton({label: "Invite", url: this.dataManager.constants.inviteLink, style: "LINK"})
-        const supportButton = new MessageButton({label: "Support Server", url: this.dataManager.constants.supportInviteLink, style: "LINK"})
+        const inviteButton = new MessageButton({label: "👉 Invite", url: this.dataManager.constants.inviteLink, style: "LINK"})
+        const supportButton = new MessageButton({label: "🛟 Support Server", url: this.dataManager.constants.supportInviteLink, style: "LINK"})
+        const donateButton = new MessageButton({label: "💜 Donate", url: "https://ko-fi.com/guidoferri55063", style: "LINK"})
         const messageActionRow = new MessageActionRow().addComponents([inviteButton, supportButton])
         interaction.reply({embeds: [embed], components: [messageActionRow]})
     };

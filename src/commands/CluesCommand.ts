@@ -12,7 +12,7 @@ export class CluesCommand extends SlashCommand {
         this.shortDescription = `Show which ghosts are possible with those clues and which evidence is lacking.`;
         this.longDescription = this.shortDescription
         let clueChoices: [string, string][] = [["None", "-1"]]
-        this.constants.correctClueNames.forEach((value: string, index: number) => clueChoices.push([value, index.toString()]))
+        this.constants.clueNames.forEach((value: string, index: number) => clueChoices.push([value, index.toString()]))
         this.command = new SlashCommandBuilder()
             .setName(this.name)
             .setDescription(this.shortDescription)
@@ -71,7 +71,7 @@ export class CluesCommand extends SlashCommand {
             ghostPool.forEach((evidence: number[], ghost: string) => {
                 const self = this;
                 let line = `**${ghost}**: ${evidence.map((x:number) => {
-                    return self.constants.correctClueNames[x];
+                    return self.constants.clueNames[x];
                 }).join(', ')}\n`;
                 msg += line;
             });

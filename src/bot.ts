@@ -2,7 +2,7 @@ import 'module-alias/register';
 import {Client, Intents, ActivityOptions} from 'discord.js';
 // import * as dotenv from "dotenv";
 // dotenv.config({path: '../.env'});
-import {DataManager, CommandManager, SlashCommand, AdminCommand} from '@modules';
+import {DataManager, CommandManager, SlashCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
@@ -10,9 +10,7 @@ import {constants} from '@constants';
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 import commandLibrary = require('@commands');
-import adminCommandLibrary = require('@adminCommands');
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary));
-const adminCommandClasses = new Map<string, typeof AdminCommand>(Object.entries(adminCommandLibrary));
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
 const commandManager = new CommandManager(dataManager, commandClasses);

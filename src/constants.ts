@@ -1,34 +1,41 @@
 import { Constants } from "@modules"
 export const constants: Constants = {
-    prefix: "!ph",
-    items: ["Spirit box", "Book", "Photo Camera", "EMF", "Video Camera", "UV Flashlight", "D.O.T.S.", "Candle", "Crucifix", "Glow Stick", "Head Mounted Camera", "Motion Sensor", "Lighter", "Parabolic Mic", "Salt", "Pills", "Smudge Stick", "Sound Sensor", "Strong Flashlight", "Thermometer", "Tripod"],
+    items: [
+        "📻 Spirit box",
+        "📖 Book",
+        "📸 Photo Camera",
+        "🚥 EMF",
+        "📹 Video Camera",
+        "😎 UV Flashlight",
+        "🟢 D.O.T.S.",
+        "🕯️ Candle",
+        "✝️ Crucifix",
+        "🍆 Glow Stick",
+        "📷 Head Mounted Camera",
+        "🏃 Motion Sensor",
+        "🔥 Lighter",
+        "📡 Parabolic Mic",
+        "🧂 Salt",
+        "💊 Pills",
+        "☁️ Smudge Stick",
+        "🎵 Sound Sensor",
+        "🔦 Strong Flashlight",
+        "🌡️ Thermometer",
+        "🔭 Tripod"
+    ],
 
     inviteLink: "https://discord.com/api/oauth2/authorize?client_id=887086717587320852&scope=applications.commands",
     supportInviteLink: "https://discord.gg/4eJsE2byEY",
-    maps: new Map<string, string>([
-        ["t", "Tanglewood"],
-        ["e", "Edgefield"],
-        ["w", "Willow"],
-        ["r", "Ridgeview"],
-        ["g", "Grafton"],
-        ["b", "Bleasdale"],
-        ["h", "Highschool"],
-        ["p", "Prison"],
-        ["a", "Asylum"],
-        ["c", "Campfire"]
-    ]),
-
-    commonClueNames: new Map<string, number>([
-        ["emf", 0], ["emf5", 0],
-        ["book", 1], ["writing", 1], ["ghostwriting", 1],
-        ["fingerprints", 2], ["fingers", 2],
-        ["spirit", 3], ["spiritbox", 3],
-        ["orbs", 4], ["orb", 4], ["ghostorbs", 4],
-        ["freezing", 5], ["temps", 5],
-        ["dots", 6], ["DOTS", 6], ["D.O.T.S.", 6]
-    ]),
-
-    correctClueNames: ["EMF 5", "Ghost Writing", "Fingerprints", "Spiritbox", "Ghost orbs", "Freezing", "D.O.T.S."],
+    maps: ["Tanglewood", "Edgefield", "Willow", "Ridgeview", "Grafton", "Bleasdale", "Highschool", "Prison", "Asylum", "Campfire"],
+    clueNames: [
+        "🚥 EMF 5",
+        "📖 Ghost Writing",
+        "🖐️ Fingerprints",
+        "📻 Spiritbox",
+        "✨ Ghost orbs",
+        "❄️ Freezing",
+        "🟢 D.O.T.S."
+    ],
     ghosts: new Map<string, number[]>([
         ["Myling", [0, 1, 2]],
         ["Spirit", [0, 1, 3]],

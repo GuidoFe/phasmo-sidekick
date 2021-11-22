@@ -1,9 +1,7 @@
 export interface Constants {
-    prefix: string;
     items: string[];
-    maps: Map<string, string>;
-    commonClueNames: Map<string, number>;
-    correctClueNames: string[];
+    maps: string[];
+    clueNames: string[];
     ghosts: Map<string, number[]>;
     inviteLink: string,
     supportInviteLink: string
