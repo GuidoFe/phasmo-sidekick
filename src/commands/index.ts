@@ -1,3 +1,4 @@
+export * from './HelpCommand';
 export * from './ChallengeCommand';
 export * from './SpinCommand';
 export * from './CluesCommand';
