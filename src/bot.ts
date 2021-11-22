@@ -40,7 +40,7 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     } else {
         line = activity.name!;
     }
-    client.user!.setActivity(`${line} | !ph`, {type: activity.type});
+    client.user!.setActivity(`${line} | /`, {type: activity.type});
 }
 
 client.once('ready', () => {
