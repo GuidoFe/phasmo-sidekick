@@ -14,17 +14,19 @@ export class HelpCommand extends SlashCommand {
             .setDescription(this.shortDescription)
     }
     execute = async (interaction: CommandInteraction) => {
-        const embedContent = `- ❓  \`/help\`: this help message\n` +
-"- 🔦 `/random item`: pick a random item\n" +
-"- 🗺️ `/random map LIST`: choose a random map between those indicated. If List is empty, it will consider every map\n"+
-"- 🎲 `/random hero Alice Beth Charlie`: Pick a random player. Useful when you have to decide who must talk alone with the ghost.\n" +
-"- 🌀 `/spin CHALLENGE_NAME`: spin the wheel of a particular challenge, if it has one.\n" +
-"- ⚔️ `/challenge`: pick a random challenge. Get a list of challenges and their description with `/challenge info CHALLENGE_NAME`\n" +
-"- 🔎 `/clues CLUES`: Show which ghosts are possible with those clues and which evidence is lacking.\n" +
-"- 🎫 `/invite`: Invite the bot or get an invite to the Support Server`";
+        const embed = new MessageEmbed().setTitle("Help")
+        embed.addField('❓  `/help`', 'This help message')
+        embed.addField("🔦 `/random item`", "Pick a random item")
+        embed.addField("🗺️ `/random map LIST",
+                       "Choose a random map between those indicated. If List is empty, it will consider every map")
+        embed.addField("🎲 `/random hero Alice Beth Charlie`", "Pick a random player. Useful when you have to decide who must talk alone with the ghost.")
+        embed.addField("🌀 `/spin CHALLENGE_NAME`", "Spin the wheel of a particular challenge, if it has one.")
+        embed.addField("⚔️ `/challenge`", "Pick a random challenge. Get a list of challenges and their description with `/challenge info CHALLENGE_NAME")
+        embed.addField("🔎 `/clues CLUES`", "Show which ghosts are possible with those clues and which evidence is lacking.")
+        embed.addField("🎫 `/invite`", "Invite the bot or get an invite to the Support Server");
         const inviteButton = new MessageButton({label: "Invite", url: this.dataManager.constants.inviteLink, style: "LINK"})
         const supportButton = new MessageButton({label: "Support Server", url: this.dataManager.constants.supportInviteLink, style: "LINK"})
         const messageActionRow = new MessageActionRow().addComponents([inviteButton, supportButton])
-        interaction.reply({embeds: [new MessageEmbed().setDescription(embedContent).setTitle("Help")], components: [messageActionRow]})
+        interaction.reply({embeds: [embed], components: [messageActionRow]})
     };
 };
