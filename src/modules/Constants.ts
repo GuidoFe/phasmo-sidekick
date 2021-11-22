@@ -5,4 +5,6 @@ export interface Constants {
     commonClueNames: Map<string, number>;
     correctClueNames: string[];
     ghosts: Map<string, number[]>;
+    inviteLink: string,
+    supportInviteLink: string
 };
