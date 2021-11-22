@@ -16,7 +16,7 @@ export class HelpCommand extends SlashCommand {
     execute = async (interaction: CommandInteraction) => {
         const embedContent = `- ❓  \`/help\`: this help message\n` +
 "- 🔦 `/random item`: pick a random item\n" +
-"- 🗺️ `/random map LIST`: choose a random map between those indicated. If List is empty, it will consider every map\n" 
+"- 🗺️ `/random map LIST`: choose a random map between those indicated. If List is empty, it will consider every map\n"+
 "- 🎲 `/random hero Alice Beth Charlie`: Pick a random player. Useful when you have to decide who must talk alone with the ghost.\n" +
 "- 🌀 `/spin CHALLENGE_NAME`: spin the wheel of a particular challenge, if it has one.\n" +
 "- ⚔️ `/challenge`: pick a random challenge. Get a list of challenges and their description with `/challenge info CHALLENGE_NAME`\n" +
