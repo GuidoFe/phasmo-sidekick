@@ -15,7 +15,7 @@ const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(comma
 const adminCommandClasses = new Map<string, typeof AdminCommand>(Object.entries(adminCommandLibrary));
 const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
-const commandManager = new CommandManager(dataManager, commandClasses, adminCommandClasses, client);
+const commandManager = new CommandManager(dataManager, commandClasses);
 import updateServerStats = require('./updateServerStats');
 const statusMessages: ActivityOptions[] = [
     {name: '_NUM_SERVERS', type: 0},

@@ -4,12 +4,11 @@ import  utils = require('@utils');
 import {CommandInteraction} from 'discord.js';
 
 export class ChallengeCommand extends SlashCommand {
-    static ERR_CHALLENGE_NOT_VALID = 1;
     name = 'challenge';
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.shortDescription = 'Pick a random challenge created by the Phasmophobia community.';
-        this.longDescription = `${this.shortDescription} Get a challenge description with ${this.prefix} challenge \`challenge_name\``;
+        this.longDescription = this.shortDescription;
         let challenges:[string, string][] = []
         this.dataManager.challengesList.forEach((value, _key)=> {
             challenges.push([value.name, value.code])
