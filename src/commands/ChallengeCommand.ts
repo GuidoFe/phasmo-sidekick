@@ -16,12 +16,12 @@ export class ChallengeCommand extends PrefixCommand {
         const args = utils.getMessageArguments(message);
         if (args.length > 2) {
             if (args[2] == 'list') {
-                message.reply(`For more info about a particular challenge, use the command \`${this.prefix} challenge CODE\`\n${utils.buildChallengeList(Array.from(challenges.keys()), challenges)}`);
+                message.reply(utils.reinviteEmbed(`For more info about a particular challenge, use the command \`${this.prefix} challenge CODE\`\n${utils.buildChallengeList(Array.from(challenges.keys()), challenges)}`, message));
                 return 0;
             } else {
                 const pickedChallenge = challenges.get(args[2]);
                 if (pickedChallenge != null) {
-                    message.reply(`**${pickedChallenge['name']}**: ${pickedChallenge['desc']}`);
+                    message.reply(utils.reinviteEmbed(`**${pickedChallenge['name']}**: ${pickedChallenge['desc']}`, message))
                     return 0;
                 } else {
                     let msg = `${args[2]} is not a valid challenge.\nPossible challenges:\n`;
@@ -32,7 +32,7 @@ export class ChallengeCommand extends PrefixCommand {
             }
         } else {
             const randomChallenge = challenges.get(utils.pickRandom(Array.from(challenges.keys())));
-            message.reply(`**${randomChallenge!.name}**: ${randomChallenge!.desc}`);
+            message.reply(utils.reinviteEmbed(`**${randomChallenge!.name}**: ${randomChallenge!.desc}`, message));
             return 0;
         }
     };

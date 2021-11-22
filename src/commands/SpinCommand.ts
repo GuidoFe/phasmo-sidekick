@@ -30,7 +30,7 @@ export class SpinCommand extends PrefixCommand {
                 message.reply({embeds: [new MessageEmbed()
                     .setColor(utils.randomVibrantColor())
                     .setTitle(trait)
-                    .setDescription(description)]});
+                    .setDescription(`${description}\n\n${utils.reinviteBotMessage(message)}`)]});
                 return 0;
             } else {
                 let msg = `Error: ${challengeCode} is not a valid challenge. Valid challenges:\n`;
@@ -41,7 +41,7 @@ export class SpinCommand extends PrefixCommand {
         } else {
             let msg = 'Possible challenges:\n';
             msg += utils.buildChallengeList(this.dataManager.spinnableChallenges, this.dataManager.challengesList);
-            message.reply(msg);
+            message.reply(utils.reinviteEmbed(`${msg}`, message));
             return 0;
         }
     };

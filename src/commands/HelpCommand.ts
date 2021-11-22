@@ -35,7 +35,7 @@ export class HelpCommand extends PrefixCommand {
                 this.embedFullHelpMessage.addField(command.commandUsage, command.shortDescription);
             };
         });
-        this.embedFullHelpMessage.addField('\u200B', '[Invite](https://discord.com/api/oauth2/authorize?client_id=887086717587320852&permissions=2048&scope=bot) ~ [Support](https://discord.gg/pMTWpgEFvU) ~ [Donate](https://ko-fi.com/guidoferri55063) ~ [Vote](https://top.gg/bot/887086717587320852/vote) ~ [Review](https://top.gg/bot/887086717587320852)', false);
+        this.embedFullHelpMessage.addField('\u200B', '[Invite](https://discord.com/api/oauth2/authorize?client_id=887086717587320852&permissions=0&scope=bot%20applications.commands) ~ [Support](https://discord.gg/pMTWpgEFvU) ~ [Donate](https://ko-fi.com/guidoferri55063) ~ [Vote](https://top.gg/bot/887086717587320852/vote) ~ [Review](https://top.gg/bot/887086717587320852)', false);
         this.embedFullHelpMessage.setColor(this.embedColor);
     };
     execute(message: Message): number {
@@ -45,6 +45,8 @@ export class HelpCommand extends PrefixCommand {
             return HelpCommand.ERR_COMMAND_NOT_VALID;
         }
         if (args.length <= 2) {
+            const link = `https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&permissions=0&scope=bot%20applications.commands&guild_id=${message.guildId}`
+            this.embedFullHelpMessage.setDescription(`⚠️ Warning: If you are an admin, please reinvite this bot via [this link](${link}) in order to grant permissions to the new Discord slash commands.\nI'm forced by Discord to deprecate the !ph commands early next year.\nDiscord will grant the permission to read server messages only to bots that really need to. If the bot functionality can rely entirely on other methods, like slash commands, the developer is forced to use them. More info at [this page](https://support-dev.discord.com/hc/en-us/articles/4404772028055-Message-Content-Privileged-Intent-for-Verified-Bots).`)
             message.reply({embeds: [this.embedFullHelpMessage]});
         } else {
             const embed = new MessageEmbed();

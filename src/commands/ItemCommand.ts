@@ -11,7 +11,7 @@ export class ItemCommand extends PrefixCommand {
         this.longDescription = this.shortDescription;
     };
     execute(message: Message) {
-        message.reply(utils.pickRandom(this.dataManager.constants.items));
+        message.reply(utils.reinviteEmbed(`${utils.pickRandom(this.dataManager.constants.items)}`, message));
         return 0;
     };
 };

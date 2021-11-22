@@ -12,6 +12,15 @@ export function formatArrayAsList(array:string[]):string {
     return msg.slice(0, -1);
 };
 
+export function reinviteBotMessage(message: Message): string {
+    const link = `https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&permissions=0&scope=bot%20applications.commands&guild_id=${message.guildId}`
+    return `⚠️ Warning: If you are an admin, please reinvite this bot by clicking [this link](${link}) in order to grant permissions to the new Discord slash commands. I'm forced by Discord to deprecate the !ph commands early next year. \`!ph help\` for more info.\nIf it has been already reinvited, type \`/\` for the new commands.`
+}
+
+export function reinviteEmbed(original: string, message: Message) {
+    return { embeds: [new MessageEmbed().setDescription(`${original}\n\n${reinviteBotMessage(message)}`)]};
+}
+
 export function buildChallengeList(challengeCodes:string[], challenges:Map<string, Challenge>):string {
     const rowsToPrint:string[] = [];
     for (const code of challengeCodes) {

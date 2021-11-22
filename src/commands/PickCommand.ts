@@ -15,7 +15,7 @@ export class PickCommand extends PrefixCommand {
         const args = utils.getMessageArguments(message);
         if (args.length > 2) {
             const pool = args.slice(2);
-            message.reply(utils.pickRandom(pool));
+            message.reply(utils.reinviteEmbed(`${utils.pickRandom(pool)}`, message));
             return 0;
         } else {
             message.reply(utils.errorMessageBuilder(this.longDescription));

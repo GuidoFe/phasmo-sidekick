@@ -36,10 +36,10 @@ export class MapCommand extends PrefixCommand {
                     return MapCommand.ERR_MAP_NOT_VALID;
                 }
             }
-            message.reply(this.pickMap(mapsInitialsPool));
+            message.reply(utils.reinviteEmbed(`${this.pickMap(mapsInitialsPool)}`, message));
             return 0;
         } else {
-            message.reply(this.pickMap());
+            message.reply(utils.reinviteEmbed(`${this.pickMap()}`, message));
             return 0;
         };
     };

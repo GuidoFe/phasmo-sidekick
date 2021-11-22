@@ -43,7 +43,7 @@ export class CluesCommand extends PrefixCommand {
                 const clues = this.constants.ghosts.get(ghostName)!.map(function (x: number) {
                     return self.constants.correctClueNames[x];
                 });
-                message.reply(clues.join(', '));
+                message.reply(utils.reinviteEmbed(`${clues.join(', ')}`, message));
                 return 0;
             }
         }
@@ -81,7 +81,7 @@ export class CluesCommand extends PrefixCommand {
                 message.reply(utils.errorMessageBuilder('No ghost matches those evidence'));
                 return 0;
             } else if (poolSize == 1) {
-                message.reply(`The ghost is a **${ghostPool.keys().next().value}**`);
+                message.reply(utils.reinviteEmbed(`The ghost is a **${ghostPool.keys().next().value}**`, message));
                 return 0;
             } else {
                 let msg = '';
@@ -92,7 +92,7 @@ export class CluesCommand extends PrefixCommand {
                     }).join(', ')}\n`;
                     msg += line;
                 });
-                message.reply(msg.slice(0, -1));
+                message.reply(utils.reinviteEmbed(`${msg.slice(0, -1)}`, message));
                 return 0;
             }
         }
