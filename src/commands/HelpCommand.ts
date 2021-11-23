@@ -27,7 +27,7 @@ export class HelpCommand extends SlashCommand {
         embed.addField("🎟️ /invite", "Invite the bot or get an invite to the Support Server");
 
         const inviteButton = new MessageButton({label: "🎟️ Invite", url: this.dataManager.constants.inviteLink, style: "LINK"})
-        const supportButton = new MessageButton({label: "🛟 Support Server", url: this.dataManager.constants.supportInviteLink, style: "LINK"})
+        const supportButton = new MessageButton({label: "ℹ️ Support Server", url: this.dataManager.constants.supportInviteLink, style: "LINK"})
         const donateButton = new MessageButton({label: "💜 Donate", url: "https://ko-fi.com/guidoferri55063", style: "LINK"})
         const reviewButton = new MessageButton({label: "⭐ Review", url: 'https://top.gg/bot/887086717587320852', style: "LINK"})
         const messageActionRow = new MessageActionRow().addComponents([inviteButton, donateButton, supportButton, reviewButton])
