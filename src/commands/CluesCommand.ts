@@ -75,7 +75,7 @@ export class CluesCommand extends SlashCommand {
             let msg = '';
             ghostPool.forEach((evidence: number[], ghost: string) => {
                 const self = this;
-                let line = `**${ghost}**:\t${evidence.map((x:number) => {
+                let line = `**${ghost}**: ${evidence.map((x:number) => {
                     return self.constants.clueNames[x];
                 }).join(', ')}\n`;
                 msg += line;

@@ -48,8 +48,10 @@ client.once('ready', () => {
     setInterval(()=>{
         updateActivity(client, statusMessages);
     }, 120000);
-    updateServerStats(client);
-    setInterval(() => {updateServerStats(client);}, 1800000);
+    if (process.env.TESTING == "0") {
+        updateServerStats(client);
+        setInterval(() => {updateServerStats(client);}, 1800000);
+    }
 });
 client.login(process.env.TOKEN);
 client.on('interactionCreate', async (interaction) => {

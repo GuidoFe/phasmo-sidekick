@@ -29,12 +29,15 @@ export class GhostCommand extends SlashCommand {
         const ghost = ghosts.get(interaction.options.getString("type", true))!
         const embed = new MessageEmbed()
             .setTitle(ghost.name)
-        ghost.clues.forEach(value => embed.setFields([{name: " ", value: this.dataManager.constants.clueNames[value], inline: true}]))
-        embed.setFields([{name: "Description", value: ghost.description, inline: false},
+        let clues: {name: string, value: string, inline: boolean}[] = []
+        ghost.clues.forEach((value, index) => clues.push({name: index == 0 ? "Evidence" : "\u200b", value: `${this.dataManager.constants.clueEmoji[value]} ${this.dataManager.constants.clueNames[value]}`, inline: true}))
+        embed.setFields([...clues,
+                         {name: "Description", value: ghost.description, inline: false},
                          {name: "Strength", value: ghost.strength, inline: false},
                          {name: "Weakness", value: ghost.weakness, inline: false},
                          {name: "Origin", value: ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin, inline: false}
         ])
+        embed.setColor(utils.randomVibrantColor())
         //embed.setDescription(`**Origin**\n\n${ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin}`)
         embed.setFooter("From Phasmophobia Wiki, Wikipedia and Oxford Languages")
         await interaction.reply({embeds: [embed]})
