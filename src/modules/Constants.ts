@@ -2,7 +2,7 @@ export interface Constants {
     items: string[];
     maps: string[];
     clueNames: string[];
-    ghosts: Map<string, number[]>;
+    clueEmoji: string[];
     inviteLink: string,
     supportInviteLink: string
 };

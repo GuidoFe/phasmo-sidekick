@@ -3,3 +3,4 @@ export * from './Constants';
 export * from './DataManager';
 export * from './CommandManager';
 export * from './SlashCommand';
+export * from './Ghost';

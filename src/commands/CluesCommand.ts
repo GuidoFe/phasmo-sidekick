@@ -2,10 +2,12 @@ import {Constants, SlashCommand, DataManager} from '@modules';
 import {SlashCommandBuilder} from '@discordjs/builders'
 import utils = require('@utils');
 import {CommandInteraction} from 'discord.js';
+import {ghosts} from '@ghosts';
 
 export class CluesCommand extends SlashCommand {
     name = 'clues';
     constants:Constants;
+    fullGhostPool: Map<string, number[]> = new Map()
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.constants = dataManager.constants;
@@ -13,6 +15,9 @@ export class CluesCommand extends SlashCommand {
         this.longDescription = this.shortDescription
         let clueChoices: [string, string][] = [["None", "-1"]]
         this.constants.clueNames.forEach((value: string, index: number) => clueChoices.push([value, index.toString()]))
+        ghosts.forEach((ghost, key) => {
+            this.fullGhostPool.set(ghost.name, ghost.clues)
+        })
         this.command = new SlashCommandBuilder()
             .setName(this.name)
             .setDescription(this.shortDescription)
@@ -39,7 +44,7 @@ export class CluesCommand extends SlashCommand {
             )
     };
     filterGhosts(cluesCodes: number[]): Map<string, number[]> {
-        const ghostPool = new Map(this.constants.ghosts);
+        const ghostPool = new Map(this.fullGhostPool);
         for (const clue of cluesCodes) {
             ghostPool.forEach((evidence: number[], ghost: string) => {
                 if (evidence.includes(clue)) {
@@ -70,7 +75,7 @@ export class CluesCommand extends SlashCommand {
             let msg = '';
             ghostPool.forEach((evidence: number[], ghost: string) => {
                 const self = this;
-                let line = `**${ghost}**: ${evidence.map((x:number) => {
+                let line = `**${ghost}**:\t${evidence.map((x:number) => {
                     return self.constants.clueNames[x];
                 }).join(', ')}\n`;
                 msg += line;

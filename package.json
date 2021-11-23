@@ -55,6 +55,7 @@
     "@challenges": "challenges",
     "@utils": "dist/utils.js",
     "@constants": "dist/constants",
-    "@index": "dist/bot.js"
+    "@index": "dist/bot.js",
+    "@ghosts": "dist/ghosts"
   }
 }

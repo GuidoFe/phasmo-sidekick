@@ -22,6 +22,7 @@ export class HelpCommand extends SlashCommand {
         embed.addField("🎲 /random hero Alice Beth Charlie", "Pick a random player. Useful when you have to decide who must talk alone with the ghost.")
         embed.addField("🌀 /spin CHALLENGE_NAME", "Spin the wheel of a particular challenge, if it has one.")
         embed.addField("⚔️ /challenge", "Pick a random challenge. Get a list of challenges and their description with `/challenge info CHALLENGE_NAME")
+        embed.addField("👻 /ghost", "Get info and trivia about a ghost")
         embed.addField("🔎 /clues CLUES", "Show which ghosts are possible with those clues and which evidence is lacking.")
         embed.addField("🎫 /invite", "Invite the bot or get an invite to the Support Server");
         const inviteButton = new MessageButton({label: "👉 Invite", url: this.dataManager.constants.inviteLink, style: "LINK"})
