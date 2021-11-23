@@ -1,5 +1,6 @@
 import {DataManager, SlashCommand} from '@modules';
 import {CommandInteraction} from 'discord.js';
+import utils = require('@utils')
 
 export class CommandManager {
     commands = new Map<string, SlashCommand>();
@@ -12,12 +13,16 @@ export class CommandManager {
         //const adminHelpCommand = this.adminCommands.get('adminHelp') as adminCommandClasses.AdminHelp;
         this.dataManager = dataManager;
     };
-    run(commandName: string, interaction: CommandInteraction) {
-        const command = this.commands.get(commandName);
-        if (command != null) {
-            command.execute(interaction);
-        } else {
-            console.error(`Command ${commandName} doesn't exist and it wasn't caught`);
+    async run(commandName: string, interaction: CommandInteraction) {
+        try {
+            const command = this.commands.get(commandName);
+            if (command != null) {
+                await command.execute(interaction);
+            } else {
+                console.error(`Command ${commandName} doesn't exist and it wasn't caught`);
+            }
+        } catch(e) {
+            utils.sendLogMessage(e)
         }
     };
 }

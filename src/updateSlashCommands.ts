@@ -13,8 +13,8 @@ const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(comma
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 const commandManager = new CommandManager(dataManager, commandClasses);
-//const commandsToRegister = [commandManager.commands.get("invite")!.command, commandManager.commands.get("ghost")!.command]
-const commandsToRegister = Array.from(commandManager.commands.values()).map(command => command.command);
+const commandsToRegister = [commandManager.commands.get("invite")!.command, commandManager.commands.get("ghost")!.command]
+//const commandsToRegister = Array.from(commandManager.commands.values()).map(command => command.command);
 console.log(commandsToRegister);
 
 const IS_GLOBAL = true;
