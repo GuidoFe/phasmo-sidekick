@@ -36,6 +36,6 @@ export class GhostCommand extends SlashCommand {
                          {name: "Origin", value: ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin, inline: false}
         ])
         embed.setFooter("From Phasmophobia Wiki, Wikipedia and Oxford Languages")
-        interaction.reply({embeds: [embed]}).catch(e => {utils.sendLogMessage(e)})
+        await interaction.reply({embeds: [embed]})
     };
 };
