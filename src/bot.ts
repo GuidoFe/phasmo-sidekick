@@ -53,7 +53,7 @@ client.once('ready', () => {
         setInterval(() => {updateServerStats(client);}, 1800000);
     }
 });
-client.login(process.env.TOKEN);
+client.login(process.env.DISCORD_TOKEN);
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
     if(interaction.user.bot) return;
