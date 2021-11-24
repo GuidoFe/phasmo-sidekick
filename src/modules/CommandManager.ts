@@ -22,7 +22,7 @@ export class CommandManager {
                 console.error(`Command ${commandName} doesn't exist and it wasn't caught`);
             }
         } catch(e) {
-            utils.sendLogMessage(`${commandName}\n${e}`)
+            utils.sendLogMessage(`${interaction.toString()}\n${e}`)
         }
     };
 }
