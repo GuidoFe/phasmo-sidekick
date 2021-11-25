@@ -48,6 +48,6 @@ export class GhostCommand extends SlashCommand {
 //        const thumbnailUrl = `https://${process.env.RAILWAY_STATIC_URL}/res/images/ghosts/ghost${utils.getRandomInt(this.nThumbnails)}.png`
  //       embed.setThumbnail(thumbnailUrl)
 
-        await interaction.reply({embeds: [embed]})
+        await interaction.reply({embeds: [embed], files: [attachment]})
     };
 };
