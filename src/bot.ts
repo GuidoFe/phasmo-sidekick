@@ -5,6 +5,7 @@ import {Client, Intents, ActivityOptions} from 'discord.js';
 import {DataManager, CommandManager, SlashCommand} from '@modules';
 import utils = require('@utils');
 import path = require('path');
+import express = require('express');
 const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
 import {constants} from '@constants';
 const dataManager = new DataManager();
@@ -41,6 +42,10 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     // client.user!.setActivity(`${line} | /help`, {type: activity.type});
     client.user!.setActivity('/help or !ph', {type: 0});
 }
+const app = express()
+const port = process.env.PORT
+app.use(express.static('../res'))
+app.listen(port)
 
 client.once('ready', () => {
     console.log('Ready!');

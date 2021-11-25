@@ -3,9 +3,11 @@ import {SlashCommand, DataManager, Ghost} from '@modules';
 import utils = require('@utils');
 import {CommandInteraction, MessageEmbed} from 'discord.js';
 import {ghosts} from '@ghosts';
+import fs = require('fs');
 
 export class GhostCommand extends SlashCommand {
     name = 'ghost';
+    nThumbnails = 0
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.shortDescription = `Get info and trivia about a ghost type`;
@@ -24,6 +26,7 @@ export class GhostCommand extends SlashCommand {
                      .setRequired(true)
                      .addChoices(ghostOptions)
         )
+        this.nThumbnails = fs.readdirSync('../res/images/ghosts').length
     };
     execute = async (interaction: CommandInteraction) => {
         const ghost = ghosts.get(interaction.options.getString("type", true))!
@@ -40,6 +43,9 @@ export class GhostCommand extends SlashCommand {
         embed.setColor(utils.randomVibrantColor())
         //embed.setDescription(`**Origin**\n\n${ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin}`)
         embed.setFooter("From Phasmophobia Wiki, Wikipedia and Oxford Languages")
+        const thumbnailUrl = `${process.env.RAILWAY_STATIC_URL}:${process.env.PORT}/images/ghosts/ghost${utils.getRandomInt(this.nThumbnails)}.png`
+        console.log(thumbnailUrl)
+        embed.setThumbnail(thumbnailUrl)
         await interaction.reply({embeds: [embed]})
     };
 };

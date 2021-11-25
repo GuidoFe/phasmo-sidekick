@@ -95,3 +95,7 @@ export function delay(seconds: number){
         setTimeout(resolve,seconds*1000);
     });
 }
+
+export function getRandomInt(max: number): number {
+  return Math.floor(Math.random() * max);
+}
