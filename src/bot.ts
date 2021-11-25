@@ -42,10 +42,10 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     // client.user!.setActivity(`${line} | /help`, {type: activity.type});
     client.user!.setActivity('/help or !ph', {type: 0});
 }
-const app = express()
-const port = process.env.PORT
-app.use('/res', express.static('../res'))
-app.listen(port)
+//const app = express()
+//const port = process.env.PORT
+//app.use('/res', express.static('../res'))
+//app.listen(port)
 
 client.once('ready', () => {
     console.log('Ready!');
