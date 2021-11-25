@@ -44,7 +44,7 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
 }
 const app = express()
 const port = process.env.PORT
-app.use(express.static('../res'))
+app.use('/res', express.static('../res'))
 app.listen(port)
 
 client.once('ready', () => {
