@@ -31,23 +31,24 @@ const statusMessages: ActivityOptions[] = [
 ];
 
 function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
-    const activity = utils.pickRandom(statusMessages);
-    let line = '';
-    if (activity.name == '_NUM_SERVERS'){
-        line = `in ${client.guilds.cache.size} servers`;
-    } else {
-        line = activity.name!;
-    }
-    client.user!.setActivity(`${line} | !ph`, {type: activity.type});
+    // const activity = utils.pickRandom(statusMessages);
+    // let line = '';
+    // if (activity.name == '_NUM_SERVERS'){
+    //     line = `in ${client.guilds.cache.size} servers`;
+    // } else {
+    //     line = activity.name!;
+    // }
+    // client.user!.setActivity(`${line} | /help`, {type: activity.type});
+    client.user!.setActivity('/help or !ph', {type: 0});
 }
 
 client.once('ready', () => {
     console.log('Ready!');
     console.log(`Currently in ${client.guilds.cache.size} servers.`);
     updateActivity(client, [statusMessages[0]]);
-    setInterval(()=>{
-        updateActivity(client, statusMessages);
-    }, 120000);
+    // setInterval(()=>{
+    //     updateActivity(client, statusMessages);
+    // }, 120000);
     if (process.env.TESTING == "0") {
         updateServerStats(client);
         setInterval(() => {updateServerStats(client);}, 1800000);
