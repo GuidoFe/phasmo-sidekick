@@ -42,7 +42,7 @@ export class GhostCommand extends SlashCommand {
         ])
         embed.setColor(utils.randomVibrantColor())
         //embed.setDescription(`**Origin**\n\n${ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin}`)
-        embed.addField("\u200b", "From Phasmophobia Wiki, Wikipedia and Oxford Languages. Art by [Freepik](https://www.freepik.com)")
+        embed.setFooter("From Phasmophobia Wiki, Wikipedia and Oxford Languages.")
         const thumbnailUrl = `https://${process.env.RAILWAY_STATIC_URL}/res/images/ghosts/ghost${utils.getRandomInt(this.nThumbnails)}.png`
         console.log(thumbnailUrl)
         embed.setThumbnail(thumbnailUrl)
