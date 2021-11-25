@@ -33,7 +33,6 @@ export class GhostCommand extends SlashCommand {
         const embed = new MessageEmbed()
             .setTitle(ghost.name)
         let clues: {name: string, value: string, inline: boolean}[] = []
-        const attachment = new MessageAttachment(`../res/images/ghosts/ghost${utils.getRandomInt(this.nThumbnails)}.png`, "ghostie")
         ghost.clues.forEach((value, index) => clues.push({name: index == 0 ? "Evidence" : "\u200b", value: `${this.dataManager.constants.clueEmoji[value]} ${this.dataManager.constants.clueNames[value]}`, inline: true}))
         embed.setFields([...clues,
                          {name: "Description", value: ghost.description, inline: false},
@@ -42,12 +41,12 @@ export class GhostCommand extends SlashCommand {
                          {name: "Origin", value: ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin, inline: false}
         ])
         embed.setColor(utils.randomVibrantColor())
-        embed.setThumbnail('attachment://ghostie')
+        embed.setThumbnail('attachment://ghostie.png')
         //embed.setDescription(`**Origin**\n\n${ghost.flag ? `${ghost.flag} ${ghost.origin}` : ghost.origin}`)
         embed.setFooter("From Phasmophobia Wiki, Wikipedia and Oxford Languages.")
 //        const thumbnailUrl = `https://${process.env.RAILWAY_STATIC_URL}/res/images/ghosts/ghost${utils.getRandomInt(this.nThumbnails)}.png`
  //       embed.setThumbnail(thumbnailUrl)
 
-        await interaction.reply({embeds: [embed], files: [attachment]})
+        await interaction.reply({embeds: [embed], files: [{attachment: `../res/images/ghosts/ghost${utils.getRandomInt(this.nThumbnails)}.png`, name: "ghostie.png"}]})
     };
 };
