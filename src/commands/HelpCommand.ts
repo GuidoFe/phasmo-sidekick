@@ -26,11 +26,12 @@ export class HelpCommand extends SlashCommand {
         embed.addField("🔎 /clues CLUES", "Show which ghosts are possible with those clues and which evidence is lacking.")
         embed.addField("🎟️ /invite", "Invite the bot or get an invite to the Support Server");
         embed.addField("\u200b", "Art by [Freepik](https://www.freepik.com)")
+        const upvoteButton = new MessageButton({label: "👍 Vote", url: 'https://top.gg/bot/887086717587320852/vote', style: "LINK"})
         const inviteButton = new MessageButton({label: "🎟️ Invite", url: this.dataManager.constants.inviteLink, style: "LINK"})
         const supportButton = new MessageButton({label: "ℹ️ Support Server", url: this.dataManager.constants.supportInviteLink, style: "LINK"})
         const donateButton = new MessageButton({label: "💜 Donate", url: "https://ko-fi.com/guidoferri55063", style: "LINK"})
         const reviewButton = new MessageButton({label: "⭐ Review", url: 'https://top.gg/bot/887086717587320852', style: "LINK"})
-        const messageActionRow = new MessageActionRow().addComponents([inviteButton, donateButton, supportButton, reviewButton])
+        const messageActionRow = new MessageActionRow().addComponents([upvoteButton, reviewButton, inviteButton, donateButton, supportButton])
         interaction.reply({embeds: [embed], components: [messageActionRow]})
     };
 };
