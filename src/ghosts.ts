@@ -7,7 +7,7 @@ export const ghosts = new Map<string, Ghost>([
         strength: "Will target only one player at a time.",
         weakness: "Crucifix effectiveness is increased to 5m against one.",
         flag: '🇮🇪',
-        origin: 'A banshee (Modern Irish bean sí, from Old Irish: ben síde, "woman of the fairy mound" or "fairy woman") is a male spirit in Irish folklore who heralds the death of a family member, usually by wailing, shrieking, or keening. Her name is connected to the mythologically important tumuli or "mounds" that dot the Irish countryside, which are known as síde (singular síd) in Old Irish.'
+        origin: 'A banshee (Modern Irish bean sí, from Old Irish: ben síde, "woman of the fairy mound" or "fairy woman") is a female spirit in Irish folklore who heralds the death of a family member, usually by wailing, shrieking, or keening. Her name is connected to the mythologically important tumuli or "mounds" that dot the Irish countryside, which are known as síde (singular síd) in Old Irish.'
     }],
     ["demon", {
         name: "Demon",
