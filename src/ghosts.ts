@@ -181,4 +181,13 @@ export const ghosts = new Map<string, Ghost>([
         flag: '🇯🇵',
         origin: 'Yūrei (幽霊) are figures in Japanese folklore analogous to the Western model of ghosts.\nLike their Chinese and Western counterparts, they are thought to be spirits barred from a peaceful afterlife.'
     }],
+    ["mimic", {
+        name: "Mimic",
+        description: "The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.",
+        clues: [2, 3, 5],
+        strength: "We're unsure what this ghost is capable of. Be careful.",
+        weakness: "Several reports have noted ghost orb sightings near mimics.",
+        flag: '🌎',
+        origin: "The word has origin from the Ancient Greek word 'mīmikós' (belonging to mimes), from 'mîmos' (actor)."
+    }],
 ])
