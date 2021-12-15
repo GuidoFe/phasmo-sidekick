@@ -48,5 +48,6 @@ export const constants: Constants = {
         ["Onryo", [3, 4, 5]],
         ["Yokai", [3, 4, 6]],
         ["Yurei", [4, 5, 6]],
+        ["Mimic", [2, 3, 5]]
     ]),
 };
