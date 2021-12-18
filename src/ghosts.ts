@@ -13,7 +13,7 @@ export const ghosts = new Map<string, Ghost>([
         name: "Demon",
         description: "A Demon is one of the worst ghosts you can encounter. It has been known to attack without reason.",
         clues: [1, 2, 5],
-        strength: "Can initiate hunts more often ||(at sanity above 50%)||.",
+        strength: "Can initiate hunts more often ||(at any sanity)||.",
         weakness: "Getting Ouija Board responses will lower sanity less.",
         flag: '🌎',
         origin: 'A demon is a supernatural being, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.'
