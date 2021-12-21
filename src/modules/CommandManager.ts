@@ -17,8 +17,9 @@ export class CommandManager {
         try {
             const command = this.commands.get(commandName);
             if (command != null) {
-                await command.execute(interaction);
+                command.execute(interaction).catch((error) => {console.log(error); utils.sendLogMessage(error);})
             } else {
+                utils.sendLogMessage(`Command ${commandName} doesn't exist and it wasn't caught`);
                 console.error(`Command ${commandName} doesn't exist and it wasn't caught`);
             }
         } catch(e) {

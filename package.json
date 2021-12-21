@@ -33,6 +33,7 @@
     "express-rate-limit": "^5.3.0",
     "module-alias": "^2.2.2",
     "node-fetch": "^2.6.6",
+    "pino": "^7.6.0",
     "rest": "^2.0.0",
     "topgg-autoposter": "^2.0.0"
   },

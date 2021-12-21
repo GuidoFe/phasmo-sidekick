@@ -16,6 +16,7 @@ const client = new Client({intents: [Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES]});
 const commandManager = new CommandManager(dataManager, commandClasses);
 import updateServerStats = require('./updateServerStats');
+import {pino, Logger} from 'pino';
 const statusMessages: ActivityOptions[] = [
     {name: '_NUM_SERVERS', type: 0},
     {name: 'basketball', type: 0},
@@ -46,10 +47,10 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
 //const port = process.env.PORT
 //app.use('/res', express.static('../res'))
 //app.listen(port)
-
+let logger : Logger;
 client.once('ready', () => {
-    console.log('Ready!');
-    console.log(`Currently in ${client.guilds.cache.size} servers.`);
+    logger = pino();
+    logger.info('Ready! Currently in %d servers', client.guilds.cache.size);
     updateActivity(client, [statusMessages[0]]);
     // setInterval(()=>{
     //     updateActivity(client, statusMessages);
@@ -63,8 +64,10 @@ client.login(process.env.DISCORD_TOKEN);
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
     if(interaction.user.bot) return;
+    logger.info('%s: %s %o', interaction.user.id, interaction.commandName, interaction.options.data);
     commandManager.run(interaction.commandName, interaction)
 });
-//client.on('guildCreate', (guild) => {
-//    utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
-//});
+client.on('guildCreate', (guild) => {
+    utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
+    logger.info('Joined %s', guild.name);
+});

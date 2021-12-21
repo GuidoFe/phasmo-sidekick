@@ -14,7 +14,6 @@ const TOKEN_discordLabs = 'discordlabs.org-yIzi7ua5QEtcyCRQwOW9';
 const TOKEN_discordListology = '41bdd206a569e31dd36a51fe8952afe3b5ceb1e974edf476da908cc58c71f56f01260011fdd89f007037e8b62e6ab5c5c84d3b62f3f168b1f585159bb8fb91d745cc67e54546d3da59eabdc8a39206f36072b1a4823221a281685dcddbf85465197e9d83c4f5821e25b1b1ecce36ba4af3862a9b714841f1dcfd44b4fd82b3f07b7bacd98a3bbc7c88ec04e19be82a9250c51f61ab325c59c75fb7e95b495f581bac79773763b7920f21ef867638299ad0c5d1eba1a188e1df9b930c6ecd965b8cf32682992ef9945974dd4c7e38bcf7fb8e0dbf60433fae2888ae5e1a17e6fd2e8d08bd0994932f7f97ca91a45b96ec073cc5a44c4d8b873fbd9119eba9e7a627179347f060a46e0074bd9a69f90c24f90670132c795eb65c7230a33a850b3280d44c132e525ecec819e8c9828fcc17562ac8f552b5b67658f18c17ce2fdd1393f871f02a25d80e0d18a0963e13d4496e57db22a98911cd4fc7c1a38eb0d721607f34768119701b2f5dc77fb9afd656f70e3416ca771ed390a1a0978f63909b451648979e6de358cc7b506198ff3f864330801bdc03c3068a7bf7a37f74bd5c0bf6b94298bec81eda27da8035f94101f566ff4e5172728119860ccb682502765c0ada632b5ce747'
 
 function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shardName, shards, idName, id, token) {
-    console.log(`Updating ${url}...`);
     const body = {};
     let f = null;
     if (type == 'POST') {
@@ -22,7 +21,6 @@ function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shard
     } else if (type == 'PATCH') {
         f = axios.patch;
     } else {
-        console.error(`ERROR: http method ${type} not valid in ${url} upload.`);
         return -1;
     }
     body[countName] = serverCount; 
@@ -38,11 +36,9 @@ function uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shard
         }
     }).then((data) => {
         // Success
-        console.log(`${url}: ${data.status ? data.status : 'no_status_code'} ${data.statusText ? data.statusText : 'no_status'}`, data.data ? data.data : 'no_data');
         return data;
     }).catch((data) => {
         // Failure
-        console.log(`${url}: ${data.response?.status ? data.response.status : 'no_status_code'} ${data.response?.statusText ? data.response.statusText : 'no_status'}`, data.response?.data ? data.response.data : 'no_data');
         return data;
     });
 }
@@ -55,7 +51,6 @@ module.exports = function updateServerStats(client) {
     const serverCount = client.guilds.cache.size;
     const shards = client.shard ? client.shard.count : 1;
     const BOT_ID = client.application.id;
-    console.log(`BOT_ID: ${BOT_ID}`);
     // TODO: bladelist.gg
     uploadStats('blist.xyz', `https://blist.xyz/api/v2/bot/${BOT_ID}/stats`, 'PATCH', 'server_count', serverCount, 'shard_count', shards, TOKEN_blist);
     // TODO: discords.com (aka Bots For Discord)
