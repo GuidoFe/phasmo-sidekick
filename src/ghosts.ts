@@ -50,7 +50,7 @@ export const ghosts = new Map<string, Ghost>([
         description: "A Mare is the source of all nightmares, making it most powerful in the dark.",
         clues: [1, 3, 4],
         strength: "Has an increased chance to attack in the dark ||(will attack with sanity below 60%)||.",
-        weakness: "Turning the lights on will reduce the chance of an attack ||(can't attack if sanity is over 40%)||.",
+        weakness: "Turning the lights on will reduce the chance of an attack ||(can't attack if sanity is over 40%, but can attack at sanity below 60% if the light is off)||.",
         flag: null,
         origin: "A mare (Old English: mære, Old Dutch: mare, Proto-Slavic *mara; mara in Old High German, Old Norse, and Swedish) is a malicious entity in Germanic and Slavic folklore that rides on people's chests while they sleep, bringing on nightmares."
     }],
