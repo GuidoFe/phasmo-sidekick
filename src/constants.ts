@@ -26,7 +26,7 @@ export const constants: Constants = {
 
     inviteLink: "https://discord.com/api/oauth2/authorize?client_id=887086717587320852&scope=applications.commands",
     supportInviteLink: "https://discord.gg/4eJsE2byEY",
-    maps: ["Tanglewood", "Edgefield", "Willow", "Ridgeview", "Grafton", "Bleasdale", "Highschool", "Prison", "Asylum", "Campfire"],
+    maps: [ "Tanglewood", "Edgefield", "Willow", "Ridgeview", "Grafton", "Bleasdale", "Highschool", "Prison", "Asylum", "Campfire" ],
     clueNames: [
         "EMF 5",
         "Ghost Writing",
@@ -43,6 +43,6 @@ export const constants: Constants = {
         "📻",
         "✨",
         "❄️ ",
-        "🟢"
+        "🟢",
     ],
 };
