@@ -37,7 +37,7 @@ export const ghosts = new Map<string, Ghost>([
         origin: "Hantu is the Malay and Indonesian word for spirit or ghost. In modern usage it generally means spirits of the dead but has also come to refer to any legendary invisible being, such as demons. In its traditional context the term also referred to animistic nature spirits or ancestral souls."
     }],
     ["jinn", {
-        name: "Jinn",
+        name: "Jinn", 
         description: "A Jinn is a territorial ghost that will attack when threatened. It has also been known to travel at significant speed.",
         clues: [0, 2, 5],
         strength: "Travels at faster speeds if its victim is far away.",
