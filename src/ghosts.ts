@@ -102,7 +102,7 @@ export const ghosts = new Map<string, Ghost>([
     ["poltergeist", {
         name: "Poltergeist",
         description: "One of the most famous ghosts, the Poltergeist. Known to manipulate objects around it to spread fear into its victims.",
-        clues: [1, 2, 4],
+        clues: [1, 2, 3],
         strength: "Capable of throwing multiple objects at once.",
         weakness: "Becomes powerless with no throwables nearby.",
         flag: '🇩🇪',
