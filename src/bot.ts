@@ -64,6 +64,6 @@ client.on('interactionCreate', async (interaction) => {
     commandManager.run(interaction.commandName, interaction)
 });
 client.on('guildCreate', (guild) => {
-    utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
+    //utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
     console.log(`Joined ${guild.name}`);
 });
