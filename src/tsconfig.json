@@ -19,7 +19,8 @@
             "@challenges/*": ["../challenges/*"],
             "@utils": ["utils.js"],
             "@constants": ["./constants"],
-            "@index": ["bot.ts"]
+            "@index": ["bot.ts"],
+            "@ghosts": ["./ghosts"]
         }
     },
     "incude": ["./**/*"]

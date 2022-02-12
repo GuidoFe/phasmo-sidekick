@@ -1,20 +1,50 @@
-import {Constants, PrefixCommand, DataManager} from '@modules';
+import {Constants, SlashCommand, DataManager} from '@modules';
+import {SlashCommandBuilder} from '@discordjs/builders'
 import utils = require('@utils');
-import {Message} from 'discord.js';
+import {CommandInteraction} from 'discord.js';
+import {ghosts} from '@ghosts';
 
-export class CluesCommand extends PrefixCommand {
-    static ERR_CLUE_NOT_VALID = 1;
+export class CluesCommand extends SlashCommand {
     name = 'clues';
     constants:Constants;
+    fullGhostPool: Map<string, number[]> = new Map()
     constructor(dataManager: DataManager) {
         super(dataManager);
         this.constants = dataManager.constants;
-        this.commandUsage = `🔎 ${this.prefix} clues \`clues_list OR ghost_name\``;
-        this.shortDescription = `Show which ghosts are possible with those clues and which evidence is lacking. Altenatively, you can list the clues of a particular ghost by specifying its name.`;
-        this.longDescription = `${this.shortDescription}\n Examples: \n- \`${this.prefix} clues book dots\` to list all the ghosts that have ghost writing and dots.\n- \`${this.prefix} clues oni\` to list all the evidence of the oni.\nClues:\n    - \`emf\` or \`emf5\`\n    - \`book\` or \`writing\` or \`ghostwriting\`\n    - \`fingerprints\` or \`fingers\`\n    - \`spirit\` or \`spiritbox\`\n    - \`orbs\` or \`ghostorbs\`\n    - \`freezing\` or \`temps\`\n    - \`dots\`\n\nExample: \`${this.prefix} clues emf orbs\``;
-    }
+        this.shortDescription = `Show which ghosts are possible with those clues and which evidence is lacking.`;
+        this.longDescription = this.shortDescription
+        let clueChoices: [string, string][] = [["None", "-1"]]
+        this.constants.clueNames.forEach((value: string, index: number) => clueChoices.push([value, index.toString()]))
+        ghosts.forEach((ghost, key) => {
+            this.fullGhostPool.set(ghost.name, ghost.clues)
+        })
+        this.command = new SlashCommandBuilder()
+            .setName(this.name)
+            .setDescription(this.shortDescription)
+        this.command.addStringOption(option => 
+                option
+                    .setName("first_clue")
+                    .setDescription("First clue")
+                    .setRequired(true)
+                    .addChoices(clueChoices)
+            )
+            .addStringOption(option => 
+                option
+                    .setName("second_clue")
+                    .setDescription("Second clue")
+                    .setRequired(true)
+                    .addChoices(clueChoices)
+            )
+            .addStringOption(option => 
+                option
+                    .setName("third_clue")
+                    .setDescription("Third clue")
+                    .setRequired(true)
+                    .addChoices(clueChoices)
+            )
+    };
     filterGhosts(cluesCodes: number[]): Map<string, number[]> {
-        const ghostPool = new Map(this.constants.ghosts);
+        const ghostPool = new Map(this.fullGhostPool);
         for (const clue of cluesCodes) {
             ghostPool.forEach((evidence: number[], ghost: string) => {
                 if (evidence.includes(clue)) {
@@ -24,77 +54,33 @@ export class CluesCommand extends PrefixCommand {
         }
         return ghostPool;
     };
-    execute(message: Message): number {
-        var args = utils.getMessageArguments(message);
-        let cluesList = new Array<string>();
-        if (args.length == 4 && args[2].toLowerCase() == "the" && args[3].toLowerCase() == "twins" || args.length == 3 && args[2].toLowerCase() == "twins") {
-            args = ["!ph", "clues", "The Twins"]
-        }
-        if (args.length > 2) {
-            cluesList = args.slice(2);
-        }
-        if (args.length == 3) {
-            var ghostName = args[2]
-            if (args[2] != "The Twins") {
-                ghostName = args[2].charAt(0).toUpperCase() + args[2].slice(1).toLowerCase();
-            }
-            if (this.constants.ghosts.has(ghostName)) {
+    execute = async (interaction: CommandInteraction) => {
+        const first = interaction.options.getString("first_clue")
+        const second = interaction.options.getString("second_clue")
+        const third = interaction.options.getString("third_clue")
+        let availableClues: number[] = []
+        if (first != "-1")
+            availableClues.push(parseInt(first!))
+        if (second != "-1")
+            availableClues.push(parseInt(second!))
+        if (third != "-1")
+            availableClues.push(parseInt(third!))
+        const ghostPool = this.filterGhosts(availableClues);
+        const poolSize=ghostPool.size;
+        if (poolSize == 0)
+            interaction.reply(utils.errorMessageBuilder('No ghost matches those evidence'));
+        else if (poolSize == 1)
+            interaction.reply(`The ghost is a **${ghostPool.keys().next().value}**`);
+        else {
+            let msg = '';
+            ghostPool.forEach((evidence: number[], ghost: string) => {
                 const self = this;
-                const clues = this.constants.ghosts.get(ghostName)!.map(function (x: number) {
-                    return self.constants.correctClueNames[x];
-                });
-                message.reply(utils.reinviteEmbed(`${clues.join(', ')}`, message));
-                return 0;
-            }
-        }
-        const wrongArgs = new Array<string>();
-        for (const clue of cluesList) {
-            if (!(this.constants.commonClueNames.has(clue))) {
-                wrongArgs.push(clue);
-            }
-        }
-        if (wrongArgs.length != 0) {
-            if (wrongArgs.length == 1) {
-                if (args.length == 3) {
-                    message.reply(utils.errorMessageBuilder(`${wrongArgs[0]} is not a valid clue or ghost name.`));
-                } else {
-                    message.reply(utils.errorMessageBuilder(`${wrongArgs[0]} is not a valid clue.`));
-                }
-                return CluesCommand.ERR_CLUE_NOT_VALID;
-            } else {
-                let stringWrongArgs = wrongArgs.join(', ');
-                message.reply(utils.errorMessageBuilder(`${stringWrongArgs} are not valid evidence.\n\n${this.longDescription}`));
-                return CluesCommand.ERR_CLUE_NOT_VALID;
-            }
-        } else {
-            const availableClues = cluesList.map((x) => {
-                const val = this.constants.commonClueNames.get(x);
-                if (val != null) {
-                    return val;
-                } else {
-                    throw `Error: clue ${x} in cluesList is not in availableClues`;
-                };
+                let line = `**${ghost}**: ${evidence.map((x:number) => {
+                    return self.constants.clueNames[x];
+                }).join(', ')}\n`;
+                msg += line;
             });
-            const ghostPool = this.filterGhosts(availableClues);
-            const poolSize=ghostPool.size;
-            if (poolSize == 0) {
-                message.reply(utils.errorMessageBuilder('No ghost matches those evidence'));
-                return 0;
-            } else if (poolSize == 1) {
-                message.reply(utils.reinviteEmbed(`The ghost is a **${ghostPool.keys().next().value}**`, message));
-                return 0;
-            } else {
-                let msg = '';
-                ghostPool.forEach((evidence: number[], ghost: string) => {
-                    const self = this;
-                    let line = `**${ghost}**: ${evidence.map((x:number) => {
-                        return self.constants.correctClueNames[x];
-                    }).join(', ')}\n`;
-                    msg += line;
-                });
-                message.reply(utils.reinviteEmbed(`${msg.slice(0, -1)}`, message));
-                return 0;
-            }
+            interaction.reply(msg.slice(0, -1));
         }
     };
 };

@@ -98,3 +98,13 @@ export function msToTime(duration: number): String {
     const secondsStr = (seconds < 10) ? "0" + seconds : seconds.toString();
     return hoursStr + ":" + minutesStr + ":" + secondsStr + "." + milliseconds;
 }
+
+export function delay(seconds: number){
+    return new Promise(function(resolve){
+        setTimeout(resolve,seconds*1000);
+    });
+}
+
+export function getRandomInt(max: number): number {
+  return Math.floor(Math.random() * max);
+}
