@@ -5,7 +5,7 @@ export const ghosts = new Map<string, Ghost>([
         description: "A Banshee is a natural hunter and will attack anything. It has been known to single out its prey before making a killing blow.",
         clues: [2, 4, 6],
         strength: "Will target only one player at a time.",
-        weakness: "Crucifix effectiveness is increased to 5m against one.",
+        weakness: "Banshee's can sometimes be heard screaming with a parabolic microphone.",
         flag: '🇮🇪',
         origin: 'A banshee (Modern Irish bean sí, from Old Irish: ben síde, "woman of the fairy mound" or "fairy woman") is a female spirit in Irish folklore who heralds the death of a family member, usually by wailing, shrieking, or keening. Her name is connected to the mythologically important tumuli or "mounds" that dot the Irish countryside, which are known as síde (singular síd) in Old Irish.'
     }],
@@ -14,7 +14,7 @@ export const ghosts = new Map<string, Ghost>([
         description: "A Demon is one of the worst ghosts you can encounter. It has been known to attack without reason.",
         clues: [1, 2, 5],
         strength: "Can initiate hunts more often ||(at any sanity)||.",
-        weakness: "Getting Ouija Board responses will lower sanity less.",
+        weakness: "Demons fear the Crucifix and will be less aggressive near one. ||Crucifixes will stop a hunt starting within 5m instead of 3m||",
         flag: '🌎',
         origin: 'A demon is a supernatural being, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.'
     }],
