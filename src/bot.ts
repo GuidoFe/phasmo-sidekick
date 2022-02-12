@@ -40,7 +40,7 @@ function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     //     line = activity.name!;
     // }
     // client.user!.setActivity(`${line} | /help`, {type: activity.type});
-    client.user!.setActivity('/help or !ph', {type: 0});
+    client.user!.setActivity('/help', {type: 0});
 }
 //const app = express()
 //const port = process.env.PORT
