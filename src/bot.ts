@@ -12,8 +12,7 @@ const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 import commandLibrary = require('@commands');
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary));
-const client = new Client({intents: [Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES]});
+const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
 const commandManager = new CommandManager(dataManager, commandClasses);
 import updateServerStats = require('./updateServerStats');
 
