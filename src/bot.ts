@@ -16,6 +16,21 @@ const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_M
 const commandManager = new CommandManager(dataManager, commandClasses);
 import updateServerStats = require('./updateServerStats');
 
+const statusMessages: ActivityOptions[] = [
+    {name: '_NUM_SERVERS', type: 0},
+    {name: 'basketball', type: 0},
+    {name: 'Ghostbusters', type: 3},
+    {name: 'Casper', type: 3},
+    {name: 'with the Ouija', type: 0},
+    {name: 'The Shining', type: 3},
+    {name: 'Phasmophobia', type: 0},
+    {name: 'the guitar', type: 0},
+    {name: 'Nightmare mode', type: 0},
+    {name: 'the bonfire', type: 3},
+    {name: 'cornhole', type: 0},
+    {name: 'ring toss', type: 0},
+];
+
 function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
     // const activity = utils.pickRandom(statusMessages);
     // let line = '';
