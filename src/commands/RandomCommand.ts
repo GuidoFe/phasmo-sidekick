@@ -47,12 +47,11 @@ export class RandomCommand extends SlashCommand {
                 interaction.reply(utils.pickRandom(this.dataManager.constants.items));
                 break;
             case "map":
-                interaction.reply("Asylum")
-                //const mapList = interaction.options.getString("map_list")
-                //if (mapList != null)
-                //    interaction.reply(utils.pickRandom(mapList.split(" ")))
-                //else
-                //    interaction.reply(utils.pickRandom(Array.from(this.dataManager.constants.maps.values())))
+                const mapList = interaction.options.getString("map_list")
+                if (mapList != null)
+                    interaction.reply(utils.pickRandom(mapList.split(" ")))
+                else
+                    interaction.reply(utils.pickRandom(Array.from(this.dataManager.constants.maps.values())))
                 break;
             case "hero":
                 const player = utils.pickRandom(interaction.options.getString("players", true).split(" "))
