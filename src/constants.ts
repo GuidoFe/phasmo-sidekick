@@ -28,13 +28,13 @@ export const constants: Constants = {
     supportInviteLink: "https://discord.gg/4eJsE2byEY",
     maps: [ "Tanglewood", "Edgefield", "Willow", "Ridgeview", "Grafton", "Bleasdale", "Highschool", "Prison", "Asylum", "Campfire" ],
     clueNames: [
-        "EMF 5",
-        "Ghost Writing",
-        "Fingerprints",
-        "Spiritbox",
-        "Ghost orbs",
-        "Freezing",
-        "D.O.T.S."
+        "EMF 5", //0
+        "Ghost Writing", //1
+        "Fingerprints",  //2
+        "Spiritbox",     //3
+        "Ghost orbs",    //4
+        "Freezing",      //5
+        "D.O.T.S."       //6
     ],
     clueEmoji: [
         "🚥",

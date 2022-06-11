@@ -18,6 +18,15 @@ export const ghosts = new Map<string, Ghost>([
         flag: '🌎',
         origin: 'A demon is a supernatural being, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.'
     }],
+    ["deogen", {
+        name: "Deogen",
+        description: "Sometimes surrounded by an endless fog, Deogen have been eluding ghost hunters for years. These ghosts have been reported to find even the most hidden prey , before stalking them into exhaustion.",
+        clues: [1, 3, 6],
+        strength: "Deogen constantly sense the living. You can run but you can't hide.",
+        weakness: "Deogen require a lot of energy to form and will move very slowly.",
+        flag: '🇧🇪',
+        origin: 'he Deogen, also known as the De Ogen or The Eyes, is an evil spirit said to haunt the Sonian Forest in Belgium, often seen in fog form and followed by smaller shadow figures. From obscurban-legend.fandom.com',
+    }],
     ["goryo", {
         name: "Goryo",
         description: "When a Goryo passes through a DOTS projector, using a video camera is the only way to see it.",
@@ -62,6 +71,15 @@ export const ghosts = new Map<string, Ghost>([
         weakness: "Produces paranormal sounds more frequently.",
         flag: null,
         origin: "In Scandinavian folklore, the mylingar were the phantasmal incarnations of the souls of children that had been forced to roam the earth until they could persuade someone (or otherwise cause enough of a ruckus to make their wishes known) to bury them properly."
+    }],
+    ["moroi", {
+        name: "Moroi",
+        description: "Moroi have risen from the grave to drain energy from the living. They have been known to place curses on their victims, curable only by antidotes or moving very far away.",
+        clues: [1, 3, 5],
+        strength: "The weaker their victims, the stronger the Moroi becomes.",
+        weakness: "Moroi suffer from hyperosmia, weakening them for longer periods.",
+        flag: "🇷🇴",
+        origin: "A moroi (sometimes moroii in modern fiction; pl. moroi) is a type of vampire or ghost in Romanian folklore. A female moroi is called a moroaică (pl. moroaice). In some versions, a moroi is a phantom of a dead person which leaves the grave to draw energy from the living."
     }],
     ["obake", {
         name: "Obake",
@@ -144,6 +162,15 @@ export const ghosts = new Map<string, Ghost>([
         flag: '🌎',
         //Oxford Languages
         origin: "Middle English: from Anglo-Norman French, from Latin spiritus ‘breath, spirit’, from spirare ‘breathe’."
+    }],
+    ["thaye", {
+        name: "Thaye",
+        description: "Thaye have been known to rapidly age over time, even in the afterlife. From what we've learned, they seem to deteriorate faster while within the presence of the living.",
+        clues: [1, 4, 6],
+        strength: "Upon entering the location, Thaye will become active, defensive and agile",
+        weakness: "Thaye will weaken over time, making them weaker, slower and less aggressive",
+        flag: '🇲🇲',
+        origin: "In Burmese mythology, the thayé, also spelled 'tasei'), are deceased evil people condemned to be disembodied spirits. They often appear as tall, dark people with huge ears, long tongues, and tusk-like teeth. Thayé enter towns at noon or at night, and usually cause minor illnesses. \n\nThe thayé is said have many faces and bodies; e.g., one might be a pregnant ghost with a fat white body and big ears. Others may be tall and slim, male, or with other varying characteristics."    
     }],
     ["the_twins", {
         name: "The Twins",
