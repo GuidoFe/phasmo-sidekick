@@ -25,7 +25,7 @@ export const ghosts = new Map<string, Ghost>([
         strength: "Deogen constantly sense the living. You can run but you can't hide.",
         weakness: "Deogen require a lot of energy to form and will move very slowly.",
         flag: '🇧🇪',
-        origin: 'he Deogen, also known as the De Ogen or The Eyes, is an evil spirit said to haunt the Sonian Forest in Belgium, often seen in fog form and followed by smaller shadow figures. From obscurban-legend.fandom.com',
+        origin: 'The Deogen, also known as the De Ogen or The Eyes, is an evil spirit said to haunt the Sonian Forest in Belgium, often seen in fog form and followed by smaller shadow figures. From obscurban-legend.fandom.com',
     }],
     ["goryo", {
         name: "Goryo",
