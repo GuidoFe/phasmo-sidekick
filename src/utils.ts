@@ -1,9 +1,20 @@
-import Color from 'color';
 import {EmbedBuilder, Message} from 'discord.js';
 import {exec} from 'child_process';
 import {Challenge} from './modules';
 import {default as axios} from 'axios';
 type ColorType = `#$(string)`;
+
+function hslToHex(h:number, s:number, l:number) {
+  l /= 100;
+  const a = s * Math.min(l, 1 - l) / 100;
+  const f = (n:number) => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
 export function formatArrayAsList(array:string[]):string {
     let msg = '';
     for (const element of array) {
@@ -42,7 +53,7 @@ export function getMessageArguments(message:Message):string[] {
 
 export function randomVibrantColor():ColorType {
     const h = Math.floor(Math.random() * 36) * 10;
-    return Color.hsl(h, 100, 70).hex() as ColorType;
+    return hslToHex(h, 100, 70) as ColorType;
 }
 
 export function formatMapAsList(map:Map<string, any>):string {
