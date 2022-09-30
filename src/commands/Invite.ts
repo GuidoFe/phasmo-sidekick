@@ -1,7 +1,7 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {SlashCommand, DataManager} from '@modules';
-import utils = require('@utils');
-import {CommandInteraction, MessageEmbed} from 'discord.js';
+import {SlashCommand, DataManager} from '../modules';
+import * as utils from '../utils';
+import {ChatInputCommandInteraction, EmbedBuilder} from 'discord.js';
 
 export class InviteCommand extends SlashCommand {
     name = 'invite';
@@ -13,8 +13,8 @@ export class InviteCommand extends SlashCommand {
             .setName(this.name)
             .setDescription(this.shortDescription)
     };
-    execute = async (interaction: CommandInteraction) => {
-        interaction.reply({embeds: [new MessageEmbed()
+    execute = async (interaction: ChatInputCommandInteraction) => {
+        interaction.reply({embeds: [new EmbedBuilder()
                           .setTitle("Invite Links")
                           .setDescription(`[Invite Phasmo Helper in your server](${this.dataManager.constants.inviteLink})\n[Support Discord Server](${this.dataManager.constants.supportInviteLink})`)]})
     }

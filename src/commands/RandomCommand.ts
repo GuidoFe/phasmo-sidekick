@@ -1,7 +1,7 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {SlashCommand, DataManager} from '@modules';
-import utils = require('@utils');
-import {CommandInteraction} from 'discord.js';
+import {SlashCommand, DataManager} from '../modules';
+import * as utils from '../utils';
+import {ChatInputCommandInteraction} from 'discord.js';
 
 export class RandomCommand extends SlashCommand {
     name = 'random';
@@ -40,7 +40,7 @@ export class RandomCommand extends SlashCommand {
                                    .setDescription("Get a random challenge")
                                   )
     };
-    execute = async (interaction: CommandInteraction) => {
+    execute = async (interaction: ChatInputCommandInteraction) => {
         const subCommand = interaction.options.getSubcommand(true)
         switch (subCommand) {
             case "item":

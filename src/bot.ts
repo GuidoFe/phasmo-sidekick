@@ -1,20 +1,17 @@
-import 'module-alias/register';
-import {Client, Intents, ActivityOptions} from 'discord.js';
+import {Client, GatewayIntentBits, ActivityOptions, ChatInputCommandInteraction} from 'discord.js';
 // import * as dotenv from "dotenv";
 // dotenv.config({path: '../.env'});
-import {DataManager, CommandManager, SlashCommand} from '@modules';
-import utils = require('@utils');
-import path = require('path');
-import express = require('express');
-const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
-import {constants} from '@constants';
+import {DataManager, CommandManager, SlashCommand} from './modules';
+import {dirname} from 'path';
+const challengesFolder = '../challenges';
+import {constants} from './constants';
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
-import commandLibrary = require('@commands');
+import * as commandLibrary from './commands';
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary));
-const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
+const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]});
 const commandManager = new CommandManager(dataManager, commandClasses);
-import updateServerStats = require('./updateServerStats');
+import * as updateServerStats from './updateServerStats';
 
 const statusMessages: ActivityOptions[] = [
     {name: '_NUM_SERVERS', type: 0},
@@ -61,7 +58,7 @@ client.login(process.env.DISCORD_TOKEN);
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
     if(interaction.user.bot) return;
-    commandManager.run(interaction.commandName, interaction)
+    commandManager.run(interaction.commandName, interaction as ChatInputCommandInteraction)
 });
 client.on('guildCreate', (guild) => {
     //utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);

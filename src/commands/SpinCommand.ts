@@ -1,7 +1,7 @@
-import {SlashCommand, DataManager} from '@modules';
+import {SlashCommand, DataManager} from '../modules';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import utils = require('@utils');
-import {MessageEmbed, CommandInteraction} from 'discord.js';
+import * as utils from '../utils';
+import {EmbedBuilder, ChatInputCommandInteraction} from 'discord.js';
 export class SpinCommand extends SlashCommand {
     name = 'spin';
     constructor(dataManager: DataManager) {
@@ -17,13 +17,13 @@ export class SpinCommand extends SlashCommand {
                 .setName("challenge")
                 .setDescription("Challenge that has the wheel you want to spin")
                 .setRequired(true)
-                .addChoices(dataManager.spinnableChallenges.map(code => {
+                .addChoices(...dataManager.spinnableChallenges.map(code => {
                     const challenge = dataManager.challengesList.get(code);
-                    return [challenge!.name, code]
+                    return {name: challenge!.name, value: code}
                 }))
         )
     };
-    execute = async (interaction: CommandInteraction) => {
+    execute = async (interaction: ChatInputCommandInteraction) => {
         const challenge = this.dataManager.challengesList.get(interaction.options.getString("challenge", true))!;
         const wheel = challenge.wheel;
         let trait='ERR';
@@ -35,7 +35,7 @@ export class SpinCommand extends SlashCommand {
             trait = utils.pickRandom(Array.from(wheel.keys()));
             description = wheel.get(trait)!.desc;
         }
-        interaction.reply({embeds: [new MessageEmbed()
+        interaction.reply({embeds: [new EmbedBuilder()
             .setColor(utils.randomVibrantColor())
             .setTitle(trait)
             .setDescription(description)]});

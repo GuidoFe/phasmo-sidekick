@@ -1,8 +1,8 @@
-import Color = require('color');
-import {MessageEmbed, Message} from 'discord.js';
+import * as color from 'color';
+import {EmbedBuilder, Message} from 'discord.js';
 import {exec} from 'child_process';
-import {Challenge} from '@modules';
-const axios = require('axios').default;
+import {Challenge} from './modules';
+import {default as axios} from 'axios';
 type ColorType = `#$(string)`;
 export function formatArrayAsList(array:string[]):string {
     let msg = '';
@@ -18,7 +18,7 @@ export function reinviteBotMessage(message: Message): string {
 }
 
 export function reinviteEmbed(original: string, message: Message) {
-    return { embeds: [new MessageEmbed().setDescription(`${original}\n\n${reinviteBotMessage(message)}`)]};
+    return { embeds: [new EmbedBuilder().setDescription(`${original}\n\n${reinviteBotMessage(message)}`)]};
 }
 
 export function buildChallengeList(challengeCodes:string[], challenges:Map<string, Challenge>):string {
@@ -42,7 +42,7 @@ export function getMessageArguments(message:Message):string[] {
 
 export function randomVibrantColor():ColorType {
     const h = Math.floor(Math.random() * 36) * 10;
-    return Color.hsl(h, 100, 70).hex() as ColorType;
+    return color.hsl(h, 100, 70).hex() as ColorType;
 }
 
 export function formatMapAsList(map:Map<string, any>):string {
@@ -54,7 +54,7 @@ export function formatMapAsList(map:Map<string, any>):string {
 }
 
 export function errorMessageBuilder(msg:string) {
-    return {embeds: [new MessageEmbed()
+    return {embeds: [new EmbedBuilder()
         .setColor('#FA5610')
         .setDescription(msg)
         .setTitle('Error')]};

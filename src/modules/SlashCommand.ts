@@ -1,6 +1,6 @@
 /** Test */
 import {DataManager} from './DataManager';
-import {Interaction} from 'discord.js';
+import {ChatInputCommandInteraction} from 'discord.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 export class SlashCommand {
     name = '';
@@ -10,7 +10,7 @@ export class SlashCommand {
     constructor(dataManager: DataManager) {
         this.dataManager = dataManager;
     }
-    execute: (interaction: Interaction) => Promise<void>;
+    execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
     command: SlashCommandBuilder;
 
 }

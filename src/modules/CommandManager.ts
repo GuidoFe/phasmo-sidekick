@@ -1,6 +1,6 @@
-import {DataManager, SlashCommand} from '@modules';
-import {CommandInteraction} from 'discord.js';
-import utils = require('@utils')
+import {DataManager, SlashCommand} from '../modules';
+import {ChatInputCommandInteraction} from 'discord.js';
+import * as utils from '../utils';
 
 export class CommandManager {
     commands = new Map<string, SlashCommand>();
@@ -13,7 +13,7 @@ export class CommandManager {
         //const adminHelpCommand = this.adminCommands.get('adminHelp') as adminCommandClasses.AdminHelp;
         this.dataManager = dataManager;
     };
-    async run(commandName: string, interaction: CommandInteraction) {
+    async run(commandName: string, interaction: ChatInputCommandInteraction) {
         try {
             const command = this.commands.get(commandName);
             if (command != null) {

@@ -1,8 +1,8 @@
-import {Constants, SlashCommand, DataManager} from '@modules';
+import {Constants, SlashCommand, DataManager} from '../modules';
 import {SlashCommandBuilder} from '@discordjs/builders'
-import utils = require('@utils');
-import {CommandInteraction} from 'discord.js';
-import {ghosts} from '@ghosts';
+import * as utils from '../utils';
+import {ChatInputCommandInteraction} from 'discord.js';
+import {ghosts} from '../ghosts';
 
 export class CluesCommand extends SlashCommand {
     name = 'clues';
@@ -13,8 +13,8 @@ export class CluesCommand extends SlashCommand {
         this.constants = dataManager.constants;
         this.shortDescription = `Show which ghosts are possible with those clues and which evidence is lacking.`;
         this.longDescription = this.shortDescription
-        let clueChoices: [string, string][] = [["None", "-1"]]
-        this.constants.clueNames.forEach((value: string, index: number) => clueChoices.push([value, index.toString()]))
+        let clueChoices: {name: string; value: string}[] = [{name: "None", value: "-1"}]
+        this.constants.clueNames.forEach((value: string, index: number) => clueChoices.push({name: value, value: index.toString()}))
         ghosts.forEach((ghost, key) => {
             this.fullGhostPool.set(ghost.name, ghost.clues)
         })
@@ -26,21 +26,21 @@ export class CluesCommand extends SlashCommand {
                     .setName("first_clue")
                     .setDescription("First clue")
                     .setRequired(true)
-                    .addChoices(clueChoices)
+                    .addChoices(...clueChoices)
             )
             .addStringOption(option => 
                 option
                     .setName("second_clue")
                     .setDescription("Second clue")
                     .setRequired(true)
-                    .addChoices(clueChoices)
+                    .addChoices(...clueChoices)
             )
             .addStringOption(option => 
                 option
                     .setName("third_clue")
                     .setDescription("Third clue")
                     .setRequired(true)
-                    .addChoices(clueChoices)
+                    .addChoices(...clueChoices)
             )
     };
     filterGhosts(cluesCodes: number[]): Map<string, number[]> {
@@ -54,7 +54,7 @@ export class CluesCommand extends SlashCommand {
         }
         return ghostPool;
     };
-    execute = async (interaction: CommandInteraction) => {
+    execute = async (interaction: ChatInputCommandInteraction) => {
         const first = interaction.options.getString("first_clue")
         const second = interaction.options.getString("second_clue")
         const third = interaction.options.getString("third_clue")

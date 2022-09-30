@@ -2,26 +2,16 @@
     "compilerOptions": {
         "outDir": "../dist",
         "allowJs": true,
-        "target": "es5",
+        "target": "es2018",
         "noImplicitAny": true,
+	"resolveJsonModule": true,
         "strictNullChecks": true,
         "noImplicitThis": true,
-        "module": "commonjs",
+	"moduleResolution": "node",
         "baseUrl": ".",
-        "resolveJsonModule": true,
         "types": [
             "color"
         ],
-        "paths": {
-            "@modules": ["modules"],
-            "@commands": ["commands"],
-            "@adminCommands": ["admin_commands"],
-            "@challenges/*": ["../challenges/*"],
-            "@utils": ["utils.js"],
-            "@constants": ["./constants"],
-            "@index": ["bot.ts"],
-            "@ghosts": ["./ghosts"]
-        }
     },
     "incude": ["./**/*"]
 }

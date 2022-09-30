@@ -1,19 +1,20 @@
-import 'module-alias/register'
-//import {REST} from '@discordjs/rest';
-import {CommandManager, DataManager, SlashCommand} from '@modules'
-import {constants} from '@constants'
+import {CommandManager, DataManager, SlashCommand} from './modules'
+import {constants} from './constants'
 import fetch from 'node-fetch'
 //const fetch = require('node-fetch')
-import path = require('path')
-const challengesFolder = path.dirname(require.resolve('@index')) + '/../challenges';
-import commandLibrary = require('@commands')
-import utils = require('@utils')
+const challengesFolder = '../challenges';
+import * as commandLibrary from './commands'
+import * as utils from './utils'
 import {SlashCommandBuilder} from '@discordjs/builders'
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary))
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
 const commandManager = new CommandManager(dataManager, commandClasses);
-const commandsToRegister = [commandManager.commands.get("ghost")!.command]
+const commandsToRegister = [
+	commandManager.commands.get("spin")!.command,
+	commandManager.commands.get("random")!.command,
+	commandManager.commands.get("challenge")!.command
+]
 //const commandsToRegister = Array.from(commandManager.commands.values()).map(command => command.command);
 console.log(commandsToRegister);
 

@@ -1,7 +1,7 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {DataManager, SlashCommand} from '@modules';
-import  utils = require('@utils');
-import {CommandInteraction} from 'discord.js';
+import {DataManager, SlashCommand} from '../modules';
+import  * as utils from '../utils';
+import {ChatInputCommandInteraction} from 'discord.js';
 
 export class ChallengeCommand extends SlashCommand {
     name = 'challenge';
@@ -9,9 +9,9 @@ export class ChallengeCommand extends SlashCommand {
         super(dataManager);
         this.shortDescription = 'Pick a random challenge created by the Phasmophobia community.';
         this.longDescription = this.shortDescription;
-        let challenges:[string, string][] = []
+        let challenges: {name: string; value: string}[] = []
         this.dataManager.challengesList.forEach((value, _key)=> {
-            challenges.push([value.name, value.code])
+            challenges.push({name: value.name, value: value.code})
         });
         this.command = new SlashCommandBuilder()
             .setName(this.name)
@@ -27,10 +27,10 @@ export class ChallengeCommand extends SlashCommand {
                                            .setName("name")
                                            .setDescription("Get info about a specific challenge")
                                            .setRequired(true)
-                                           .addChoices(challenges)
+                                           .addChoices(...challenges)
                                    ));
     }
-    execute = async (interaction: CommandInteraction) => {
+    execute = async (interaction: ChatInputCommandInteraction) => {
         const challenges = this.dataManager.challengesList;
         if (interaction.options.getSubcommand() === "random") {
             const randomChallenge = challenges.get(utils.pickRandom(Array.from(challenges.keys())));

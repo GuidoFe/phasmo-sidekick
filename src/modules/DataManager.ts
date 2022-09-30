@@ -1,5 +1,5 @@
-import fs = require('fs');
-import path = require('path');
+import {statSync, readFileSync, readdirSync} from 'fs';
+import {join} from 'path';
 import {Challenge, WheelElement} from './Challenge';
 import {Constants} from './Constants';
 
@@ -8,11 +8,11 @@ export class DataManager {
     constants: Constants;
     challengesList: Map<string, Challenge> = new Map();
     parseChallengeFile(filePath: string): Challenge{
-        const stat = fs.statSync(filePath);
+        const stat = statSync(filePath);
         if (stat.isFile() && filePath.endsWith('.json')) {
             console.log( 'Loading %s as challenge...', filePath );
             try {
-                const jsonString = fs.readFileSync(filePath, 'utf8');
+                const jsonString = readFileSync(filePath, 'utf8');
                 try {
                     const challengeObject = <Challenge>JSON.parse(jsonString);
                     if (challengeObject.hasWheel) {
@@ -44,11 +44,11 @@ export class DataManager {
         this.constants = constants;
         try {
             // Get the files as an array
-            const files = fs.readdirSync(challengesFolder);
+            const files = readdirSync(challengesFolder);
             // Loop them all with the new for...of
             for (const file of files) {
                 // Get the full paths
-                const filePath = path.join(challengesFolder, file);
+                const filePath = join(challengesFolder, file);
                 // Stat the file to see if we have a file or dir
                 const challengeObject = this.parseChallengeFile(filePath);
                 this.challengesList.set(challengeObject.code, challengeObject);
