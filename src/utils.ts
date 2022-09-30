@@ -1,4 +1,4 @@
-import * as color from 'color';
+import Color from 'color';
 import {EmbedBuilder, Message} from 'discord.js';
 import {exec} from 'child_process';
 import {Challenge} from './modules';
@@ -42,7 +42,7 @@ export function getMessageArguments(message:Message):string[] {
 
 export function randomVibrantColor():ColorType {
     const h = Math.floor(Math.random() * 36) * 10;
-    return color.hsl(h, 100, 70).hex() as ColorType;
+    return Color.hsl(h, 100, 70).hex() as ColorType;
 }
 
 export function formatMapAsList(map:Map<string, any>):string {
