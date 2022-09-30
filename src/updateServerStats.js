@@ -1,4 +1,4 @@
-const axios = require("axios").default;
+import axios from "axios";
 
 const TOKEN_blist = 'zzmHD5wXQNPlgL8dmEai';
 const TOKEN_boats = 'CZKw0sPVQOKYMJDHP1YEOKASkCjdQlFmkEiQTTGPNWyPSNySvMYCuCL3NVI5jKu5xJPVIvPcVvQC3n6nunbiQTtwOyXR1VQykT5AFY71GSLWkRiF6Dm0BA8IMqM0BKIVv0i77UPwGLYtyMSbwRM2kjVMhfJ';
@@ -47,7 +47,7 @@ function uploadStats(url, apiEndpoint, type, countName, serverCount, shardName, 
     return uploadStatsWithId(url, apiEndpoint, type, countName, serverCount, shardName, shards, null, null, token);
 }
 
-module.exports = function updateServerStats(client) {
+export function updateServerStats(client) {
     const serverCount = client.guilds.cache.size;
     const shards = client.shard ? client.shard.count : 1;
     const BOT_ID = client.application.id;

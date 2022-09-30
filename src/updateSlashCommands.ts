@@ -13,7 +13,6 @@ const commandManager = new CommandManager(dataManager, commandClasses);
 const commandsToRegister = [
 	commandManager.commands.get("spin")!.command,
 	commandManager.commands.get("random")!.command,
-	commandManager.commands.get("challenge")!.command
 ]
 //const commandsToRegister = Array.from(commandManager.commands.values()).map(command => command.command);
 console.log(commandsToRegister);

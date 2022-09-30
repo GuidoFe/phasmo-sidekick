@@ -11,7 +11,7 @@ import * as commandLibrary from './commands';
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary));
 const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]});
 const commandManager = new CommandManager(dataManager, commandClasses);
-import * as updateServerStats from './updateServerStats';
+import { updateServerStats } from './updateServerStats';
 
 const statusMessages: ActivityOptions[] = [
     {name: '_NUM_SERVERS', type: 0},
