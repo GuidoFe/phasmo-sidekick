@@ -1,6 +1,4 @@
 import {Client, GatewayIntentBits, ActivityOptions, ChatInputCommandInteraction} from 'discord.js';
-// import * as dotenv from "dotenv";
-// dotenv.config({path: '../.env'});
 import {DataManager, CommandManager, SlashCommand} from './modules';
 import {dirname} from 'path';
 const challengesFolder = '../challenges';
@@ -29,26 +27,11 @@ const statusMessages: ActivityOptions[] = [
 ];
 
 function updateActivity(client: Client, statusMessages: ActivityOptions[]) {
-    // const activity = utils.pickRandom(statusMessages);
-    // let line = '';
-    // if (activity.name == '_NUM_SERVERS'){
-    //     line = `in ${client.guilds.cache.size} servers`;
-    // } else {
-    //     line = activity.name!;
-    // }
-    // client.user!.setActivity(`${line} | /help`, {type: activity.type});
     client.user!.setActivity('/help', {type: 0});
 }
-//const app = express()
-//const port = process.env.PORT
-//app.use('/res', express.static('../res'))
-//app.listen(port)
 client.once('ready', () => {
     console.log(`Ready! Currently in ${client.guilds.cache.size} servers`);
     updateActivity(client, [statusMessages[0]]);
-    // setInterval(()=>{
-    //     updateActivity(client, statusMessages);
-    // }, 120000);
     if (process.env.TESTING == "0") {
         updateServerStats(client);
         setInterval(() => {updateServerStats(client);}, 1800000);
@@ -61,6 +44,5 @@ client.on('interactionCreate', async (interaction) => {
     commandManager.run(interaction.commandName, interaction as ChatInputCommandInteraction)
 });
 client.on('guildCreate', (guild) => {
-    //utils.sendLogMessage(`Joined new Guild: ${guild.name} (${guild.memberCount})\nDescription: ${guild.description}\n${guild.iconURL({dynamic: true, size: 2048})}`);
     console.log(`Joined ${guild.name}`);
 });
