@@ -1,4 +1,4 @@
-import { Constants } from "./modules"
+import { Constants } from "./modules/index.js"
 export const constants: Constants = {
     items: [
         "📻 Spirit box",

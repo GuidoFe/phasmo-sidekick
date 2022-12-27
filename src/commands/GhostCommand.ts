@@ -1,8 +1,8 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {SlashCommand, DataManager, Ghost} from '../modules';
-import * as utils from '../utils';
+import {SlashCommand, DataManager, Ghost} from '../modules/index.js';
+import * as utils from '../utils.js';
 import {ChatInputCommandInteraction, EmbedBuilder} from 'discord.js';
-import {ghosts} from '../ghosts';
+import {ghosts} from '../ghosts.js';
 import {readdirSync} from 'fs';
 
 export class GhostCommand extends SlashCommand {

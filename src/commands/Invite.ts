@@ -1,6 +1,6 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {SlashCommand, DataManager} from '../modules';
-import * as utils from '../utils';
+import {SlashCommand, DataManager} from '../modules/index.js';
+import * as utils from '../utils.js';
 import {ChatInputCommandInteraction, EmbedBuilder} from 'discord.js';
 
 export class InviteCommand extends SlashCommand {

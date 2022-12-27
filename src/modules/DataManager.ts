@@ -1,7 +1,7 @@
 import {statSync, readFileSync, readdirSync} from 'fs';
 import {join} from 'path';
-import {Challenge, WheelElement} from './Challenge';
-import {Constants} from './Constants';
+import {Challenge, WheelElement} from './Challenge.js';
+import {Constants} from './Constants.js';
 
 export class DataManager {
     spinnableChallenges: string[];

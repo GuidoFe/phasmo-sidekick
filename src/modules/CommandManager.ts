@@ -1,6 +1,6 @@
-import {DataManager, SlashCommand} from '../modules';
+import {DataManager, SlashCommand} from '../modules/index.js';
 import {ChatInputCommandInteraction} from 'discord.js';
-import * as utils from '../utils';
+import * as utils from '../utils.js';
 
 export class CommandManager {
     commands = new Map<string, SlashCommand>();

@@ -1,6 +1,6 @@
 import {EmbedBuilder, Message} from 'discord.js';
 import {exec} from 'child_process';
-import {Challenge} from './modules';
+import {Challenge} from './modules/index.js';
 import {default as axios} from 'axios';
 type ColorType = `#$(string)`;
 

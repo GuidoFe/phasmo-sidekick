@@ -1,10 +1,10 @@
-import {CommandManager, DataManager, SlashCommand} from './modules'
-import {constants} from './constants'
+import {CommandManager, DataManager, SlashCommand} from './modules/index.js'
+import {constants} from './constants.js'
 import fetch from 'node-fetch'
 //const fetch = require('node-fetch')
 const challengesFolder = '../challenges';
-import * as commandLibrary from './commands'
-import * as utils from './utils'
+import * as commandLibrary from './commands/index.js'
+import * as utils from './utils.js'
 import {SlashCommandBuilder} from '@discordjs/builders'
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary))
 const dataManager = new DataManager();

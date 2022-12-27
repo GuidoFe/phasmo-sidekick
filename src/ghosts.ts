@@ -1,4 +1,4 @@
-import {Ghost} from "./modules"
+import {Ghost} from "./modules/index.js"
 export const ghosts = new Map<string, Ghost>([
     ["banshee", {
         name: "Banshee",

@@ -1,5 +1,5 @@
 /** Test */
-import {DataManager} from './DataManager';
+import {DataManager} from './DataManager.js';
 import {ChatInputCommandInteraction} from 'discord.js';
 import {SlashCommandBuilder} from '@discordjs/builders';
 export class SlashCommand {

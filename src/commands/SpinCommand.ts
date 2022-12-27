@@ -1,6 +1,6 @@
-import {SlashCommand, DataManager} from '../modules';
+import {SlashCommand, DataManager} from '../modules/index.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import * as utils from '../utils';
+import * as utils from '../utils.js';
 import {EmbedBuilder, ChatInputCommandInteraction} from 'discord.js';
 export class SpinCommand extends SlashCommand {
     name = 'spin';

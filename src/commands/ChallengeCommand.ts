@@ -1,6 +1,6 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {DataManager, SlashCommand} from '../modules';
-import  * as utils from '../utils';
+import {DataManager, SlashCommand} from '../modules/index.js';
+import  * as utils from '../utils.js';
 import {ChatInputCommandInteraction} from 'discord.js';
 
 export class ChallengeCommand extends SlashCommand {

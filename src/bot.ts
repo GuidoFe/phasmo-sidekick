@@ -1,15 +1,15 @@
 import {Client, GatewayIntentBits, ActivityOptions, ChatInputCommandInteraction} from 'discord.js';
-import {DataManager, CommandManager, SlashCommand} from './modules';
+import {DataManager, CommandManager, SlashCommand} from './modules/index.js';
 import {dirname} from 'path';
 const challengesFolder = '../challenges';
-import {constants} from './constants';
+import {constants} from './constants.js';
 const dataManager = new DataManager();
 dataManager.init(constants, challengesFolder);
-import * as commandLibrary from './commands';
+import * as commandLibrary from './commands/index.js';
 const commandClasses = new Map<string, typeof SlashCommand>(Object.entries(commandLibrary));
 const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]});
 const commandManager = new CommandManager(dataManager, commandClasses);
-import { updateServerStats } from './updateServerStats';
+import { updateServerStats } from './updateServerStats.js';
 
 const statusMessages: ActivityOptions[] = [
     {name: '_NUM_SERVERS', type: 0},

@@ -1,5 +1,5 @@
 import {SlashCommandBuilder} from '@discordjs/builders';
-import {DataManager, SlashCommand} from '../modules';
+import {DataManager, SlashCommand} from '../modules/index.js';
 //import  utils = require('@utils');
 import {ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle} from 'discord.js';
 

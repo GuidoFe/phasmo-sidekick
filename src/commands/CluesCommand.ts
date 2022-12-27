@@ -1,8 +1,8 @@
-import {Constants, SlashCommand, DataManager} from '../modules';
+import {Constants, SlashCommand, DataManager} from '../modules/index.js';
 import {SlashCommandBuilder} from '@discordjs/builders'
-import * as utils from '../utils';
+import * as utils from '../utils.js';
 import {ChatInputCommandInteraction} from 'discord.js';
-import {ghosts} from '../ghosts';
+import {ghosts} from '../ghosts.js';
 
 export class CluesCommand extends SlashCommand {
     name = 'clues';
